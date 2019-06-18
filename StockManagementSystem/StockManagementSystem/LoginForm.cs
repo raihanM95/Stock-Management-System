@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StockManagementSystem.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,6 +14,12 @@ namespace StockManagementSystem
 {
     public partial class LoginForm : Form
     {
+        User user = new User();
+
+        public string connectionString = @"Server=DESKTOP-ON380RK\SQLEXPRESS; Database=StockManagementSystemDB; Integrated Security=True";
+
+        public string Message = "";
+
         public LoginForm()
         {
             InitializeComponent();
@@ -41,11 +48,10 @@ namespace StockManagementSystem
             }
 
             // Pass value in User Class
-            User user = new User();
             user.Username = userNameTextBox.Text;
             user.Password = passwordTextBox.Text;
 
-            if (user.LogIn() != 0)
+            if (LogIn() != 0)
             {
                 // Redirect form
                 this.Hide();
@@ -55,8 +61,46 @@ namespace StockManagementSystem
             else
             {
                 // Login error message
-                loginMessageLabel.Text = user.Message;
+                loginMessageLabel.Text = Message;
             }
+        }
+
+        public int LogIn()
+        {
+            int count = 0;
+
+            try
+            {
+                SqlConnection sqlConnection = new SqlConnection();
+                sqlConnection.ConnectionString = connectionString;
+
+                SqlCommand sqlCommand = new SqlCommand();
+                string commandString = "SELECT * FROM [dbo].[User] WHERE UserName = '" + user.Username + "' and Password = '" + user.Password + "'";
+                sqlCommand.CommandText = commandString;
+                sqlCommand.Connection = sqlConnection;
+
+                sqlConnection.Open();
+
+                sqlCommand.ExecuteNonQuery();
+
+                DataTable dataTable = new DataTable();
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(sqlCommand);
+                dataAdapter.Fill(dataTable);
+                count = Convert.ToInt32(dataTable.Rows.Count.ToString());
+
+                sqlConnection.Close();
+
+                if (count == 0)
+                {
+                    Message = "Username or password doesn't match";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            return count;
         }
     }
 }
