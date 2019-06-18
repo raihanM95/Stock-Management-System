@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace StockManagementSystem.Models
 {
-    public class Stock
+    public class Company
     {
         public int ID { get; set; }
-        public int Quantity { get; set; }
-        public DateTime Date { get; set; }
-        public string Status { get; set; }
+        public string Name { get; set; }
     }
 }

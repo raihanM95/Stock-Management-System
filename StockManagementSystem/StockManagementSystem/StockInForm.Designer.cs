@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.companyComboBox = new System.Windows.Forms.ComboBox();
+            this.stockBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.categoryComboBox = new System.Windows.Forms.ComboBox();
             this.itemComboBox = new System.Windows.Forms.ComboBox();
             this.reorderLevelTextBox = new System.Windows.Forms.TextBox();
@@ -42,17 +44,22 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.displayStockInDataGridView = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.stockBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.displayStockInDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // companyComboBox
             // 
+            this.companyComboBox.DataSource = this.stockBindingSource;
             this.companyComboBox.FormattingEnabled = true;
             this.companyComboBox.Location = new System.Drawing.Point(293, 68);
             this.companyComboBox.Name = "companyComboBox";
             this.companyComboBox.Size = new System.Drawing.Size(224, 28);
             this.companyComboBox.TabIndex = 0;
-            this.companyComboBox.Text = "  -Select-";
+            // 
+            // stockBindingSource
+            // 
+            this.stockBindingSource.DataSource = typeof(StockManagementSystem.Models.Stock);
             // 
             // categoryComboBox
             // 
@@ -191,6 +198,7 @@
             this.Name = "StockInForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Stock In";
+            ((System.ComponentModel.ISupportInitialize)(this.stockBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.displayStockInDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -213,5 +221,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DataGridView displayStockInDataGridView;
+        private System.Windows.Forms.BindingSource stockBindingSource;
     }
 }
