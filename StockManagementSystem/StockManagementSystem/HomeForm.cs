@@ -131,7 +131,8 @@ namespace StockManagementSystem
         // Call Stock In form
         private void StockInToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            StockInForm stockIn = new StockInForm();
+            stockIn.Show();
         }
 
         // Call Stock Out form
