@@ -75,7 +75,7 @@
             // 
             // companyBindingSource
             // 
-            this.companyBindingSource.DataSource = typeof(StockManagementSystem.Models.Company);
+         //   this.companyBindingSource.DataSource = typeof(StockManagementSystem.Models.Company);
             // 
             // categoryComboBox
             // 
@@ -91,7 +91,7 @@
             // 
             // categoryBindingSource
             // 
-            this.categoryBindingSource.DataSource = typeof(StockManagementSystem.Models.Category);
+//            this.categoryBindingSource.DataSource = typeof(StockManagementSystem.Models.Category);
             // 
             // itemComboBox
             // 
@@ -107,11 +107,11 @@
             // 
             // itemBindingSource
             // 
-            this.itemBindingSource.DataSource = typeof(StockManagementSystem.Models.Item);
+//            this.itemBindingSource.DataSource = typeof(StockManagementSystem.Models.Item);
             // 
             // stockBindingSource
             // 
-            this.stockBindingSource.DataSource = typeof(StockManagementSystem.Models.Stock);
+//            this.stockBindingSource.DataSource = typeof(StockManagementSystem.Models.Stock);
             // 
             // reorderLevelTextBox
             // 

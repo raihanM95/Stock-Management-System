@@ -48,6 +48,12 @@
   <ItemGroup>
     <Compile Include="BLL\StockManager.cs" />
     <Compile Include="BLL\UserManager.cs" />
+    <Compile Include="CategorySetupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CategorySetupForm.Designer.cs">
+      <DependentUpon>CategorySetupForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="HomeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,6 +81,9 @@
       <DependentUpon>StockInForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs" />
+    <EmbeddedResource Include="CategorySetupForm.resx">
+      <DependentUpon>CategorySetupForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="HomeForm.resx">
       <DependentUpon>HomeForm.cs</DependentUpon>
     </EmbeddedResource>
