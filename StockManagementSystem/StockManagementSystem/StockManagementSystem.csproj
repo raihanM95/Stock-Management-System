@@ -46,6 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\StockManager.cs" />
+    <Compile Include="BLL\UserManager.cs" />
     <Compile Include="HomeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,6 +66,8 @@
     <Compile Include="Models\Stock.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\StockRepository.cs" />
+    <Compile Include="Repository\UserRepository.cs" />
     <Compile Include="StockInForm.cs">
       <SubType>Form</SubType>
     </Compile>
