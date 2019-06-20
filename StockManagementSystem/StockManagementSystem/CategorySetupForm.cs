@@ -15,7 +15,7 @@ namespace StockManagementSystem
 {
     public partial class CategorySetupForm : Form
     {
-        string connectionString = @"Server=LAPTOP-BASHAROV\SQLEXPRESS; Database=StockManagementSystemDB; Integrated Security=True";
+        string connectionString = @"Server=DESKTOP-ON380RK\SQLEXPRESS; Database=StockManagementSystemDB; Integrated Security=True";
         SqlConnection sqlConnection;
 
         private string commandString ;

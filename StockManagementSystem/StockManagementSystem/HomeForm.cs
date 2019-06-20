@@ -107,7 +107,8 @@ namespace StockManagementSystem
         // Call Category Setup form
         private void CategorySetupToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            CategorySetupForm categorySetup = new CategorySetupForm();
+            categorySetup.Show();
         }
 
         // Call Company Setup form
