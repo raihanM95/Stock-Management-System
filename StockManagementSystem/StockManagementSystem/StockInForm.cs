@@ -58,7 +58,10 @@ namespace StockManagementSystem
                 commandString = @"SELECT * FROM Companys";
                 sqlCommand = new SqlCommand(commandString, sqlConnection);
 
-                sqlConnection.Open();
+                if (sqlConnection.State == ConnectionState.Closed)
+                {
+                    sqlConnection.Open();
+                }
 
                 SqlDataAdapter dataAdapter = new SqlDataAdapter(sqlCommand);
                 DataTable dataTable = new DataTable();
@@ -84,7 +87,10 @@ namespace StockManagementSystem
                 commandString = @"SELECT * FROM Categorys";
                 sqlCommand = new SqlCommand(commandString, sqlConnection);
 
-                sqlConnection.Open();
+                if (sqlConnection.State == ConnectionState.Closed)
+                {
+                    sqlConnection.Open();
+                }
 
                 SqlDataAdapter dataAdapter = new SqlDataAdapter(sqlCommand);
                 DataTable dataTable = new DataTable();
@@ -234,10 +240,15 @@ namespace StockManagementSystem
                 }
                 if (SaveButton.Text == "Update")
                 {
-                    if (IsFormValid())
+                    if (String.IsNullOrEmpty(stockInQuantityTextBox.Text))
                     {
-                        
+                        messageLabel.Text = "Please enter quantity";
+                        return;
                     }
+                    
+                    stock.Quantity = Convert.ToInt32(stockInQuantityTextBox.Text);
+                    
+                    UpdateStock(stock);
                 }
             }
             catch (Exception ex)
@@ -286,7 +297,10 @@ namespace StockManagementSystem
                 commandString = "INSERT INTO Stocks (ItemID, Quantity, Date, Status) VALUES (" + stock.ItemID + ", " + stock.Quantity + ", '" + stock.Date + "', '" + stock.Status + "')";
                 sqlCommand = new SqlCommand(commandString, sqlConnection);
 
-                sqlConnection.Open();
+                if (sqlConnection.State == ConnectionState.Closed)
+                {
+                    sqlConnection.Open();
+                }
 
                 int isExecuted = sqlCommand.ExecuteNonQuery();
                 if (isExecuted > 0)
@@ -294,16 +308,57 @@ namespace StockManagementSystem
                     messageLabel.Text = "Save Successful.";
 
                     Reset();
+                    DisplayStock();
                 }
                 else
                 {
                     messageLabel.Text = "Save Failed!";
                 }
+
                 sqlConnection.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void UpdateStock(Stock stock)
+        {
+            try
+            {
+                messageLabel.Text = "";
+
+                string query = "UPDATE Stocks SET Quantity = '" + stock.Quantity + "' WHERE ID = '" + stock.ID + "'";
+                sqlCommand = new SqlCommand(query, sqlConnection);
+
+                if (sqlConnection.State == ConnectionState.Closed)
+                {
+                    sqlConnection.Open();
+                }
+
+                int isExecuted = sqlCommand.ExecuteNonQuery();
+                if (isExecuted > 0)
+                {
+                    messageLabel.Text = "Update Successful.";
+
+                    Reset();
+                    DisplayStock();
+                }
+                else
+                {
+                    messageLabel.Text = "Update Failed!";
+                }
+
+                sqlConnection.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                sqlConnection.Close();
             }
         }
 
@@ -326,7 +381,10 @@ namespace StockManagementSystem
                 commandString = @"SELECT * FROM StocksView";
                 sqlCommand = new SqlCommand(commandString, sqlConnection);
 
-                sqlConnection.Open();
+                if (sqlConnection.State == ConnectionState.Closed)
+                {
+                    sqlConnection.Open();
+                }
 
                 SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
                 DataTable dataTable = new DataTable();
@@ -336,7 +394,25 @@ namespace StockManagementSystem
                 {
                     displayStockInDataGridView.DataSource = dataTable;
                 }
+
                 sqlConnection.Close();
+
+                DataGridViewButtonColumn editButton = new DataGridViewButtonColumn();
+                editButton.FlatStyle = FlatStyle.Popup;
+
+                editButton.HeaderText = "Action";
+                editButton.Name = "Edit";
+                editButton.UseColumnTextForButtonValue = true;
+                editButton.Text = "Edit";
+                editButton.Width = 60;
+                if(displayStockInDataGridView.Columns.Contains(editButton.Name = "Edit"))
+                {
+
+                }
+                else
+                {
+                    displayStockInDataGridView.Columns.Add(editButton);
+                }
             }
             catch (Exception ex)
             {
@@ -349,54 +425,17 @@ namespace StockManagementSystem
             displayStockInDataGridView.Rows[e.RowIndex].Cells[0].Value = (e.RowIndex + 1).ToString();
         }
 
-        //private void BindStocksGridView(List<Stock> stockList)
-        //{
-        //    try
-        //    {
-        //        int serial = 0;
-        //        string action = "Edit";
-        //        displayStockInDataGridView.Rows.Clear();
-        //        foreach (var stoc in stockList)
-        //        {
-        //            serial++;
-        //            displayStockInDataGridView.Rows.Add(serial, stoc.ID, stoc.ItemID, stoc.ItemName, stoc.Date, stoc.Quantity, stoc.Status);
-        //        }
-        //    }
-        //    catch(Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message);
-        //    }
-        //}
+        private void displayStockInDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if(e.ColumnIndex == 7)
+            {
+                stock.ID = Convert.ToInt32(displayStockInDataGridView.CurrentRow.Cells[1].Value.ToString());
+                itemComboBox.Text = displayStockInDataGridView.CurrentRow.Cells[3].Value.ToString();
+                availableQuantityTextBox.Text = displayStockInDataGridView.CurrentRow.Cells[5].Value.ToString();
+                stockInQuantityTextBox.Text = displayStockInDataGridView.CurrentRow.Cells[5].Value.ToString();
 
-        //private List<Stock> GetStocks()
-        //{
-        //    List<Stock> stockList = new List<Stock>();
-        //    try
-        //    {
-        //        commandString = "SELECT * FROM StocksView";
-
-        //        sqlCommand = new SqlCommand(commandString, sqlConnection);
-        //        sqlConnection.Open();
-
-        //        reader = sqlCommand.ExecuteReader();
-        //        while (reader.Read())
-        //        {
-        //            stock.ID = Convert.ToInt32(reader["ID"]);
-        //            stock.ItemID = Convert.ToInt32(reader["ItemID"]);
-        //            stock.ItemName = reader["ItemName"].ToString();
-        //            stock.Date = Convert.ToDateTime(reader["Date"]);
-        //            stock.Quantity = Convert.ToInt32(reader["Quantity"]);
-        //            stock.Status = reader["Status"].ToString();
-        //            stockList.Add(stock);
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message);
-        //    }
-        //    sqlConnection.Close();
-
-        //    return stockList;
-        //}
+                SaveButton.Text = "Update";
+            }
+        }
     }
 }

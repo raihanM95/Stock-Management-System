@@ -47,7 +47,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.displayStockInDataGridView = new System.Windows.Forms.DataGridView();
-            this.messageLabel = new System.Windows.Forms.Label();
             this.SL = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.itemIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,6 +54,7 @@
             this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.quantityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.messageLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.companyBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
@@ -67,7 +67,7 @@
             this.companyComboBox.DataSource = this.companyBindingSource;
             this.companyComboBox.DisplayMember = "Name";
             this.companyComboBox.FormattingEnabled = true;
-            this.companyComboBox.Location = new System.Drawing.Point(293, 68);
+            this.companyComboBox.Location = new System.Drawing.Point(341, 68);
             this.companyComboBox.Name = "companyComboBox";
             this.companyComboBox.Size = new System.Drawing.Size(224, 28);
             this.companyComboBox.TabIndex = 0;
@@ -82,7 +82,7 @@
             this.categoryComboBox.DataSource = this.categoryBindingSource;
             this.categoryComboBox.DisplayMember = "Name";
             this.categoryComboBox.FormattingEnabled = true;
-            this.categoryComboBox.Location = new System.Drawing.Point(293, 114);
+            this.categoryComboBox.Location = new System.Drawing.Point(341, 114);
             this.categoryComboBox.Name = "categoryComboBox";
             this.categoryComboBox.Size = new System.Drawing.Size(224, 28);
             this.categoryComboBox.TabIndex = 1;
@@ -98,7 +98,7 @@
             this.itemComboBox.DataSource = this.itemBindingSource;
             this.itemComboBox.DisplayMember = "ItemName";
             this.itemComboBox.FormattingEnabled = true;
-            this.itemComboBox.Location = new System.Drawing.Point(293, 158);
+            this.itemComboBox.Location = new System.Drawing.Point(341, 158);
             this.itemComboBox.Name = "itemComboBox";
             this.itemComboBox.Size = new System.Drawing.Size(224, 28);
             this.itemComboBox.TabIndex = 2;
@@ -115,7 +115,7 @@
             // 
             // reorderLevelTextBox
             // 
-            this.reorderLevelTextBox.Location = new System.Drawing.Point(293, 203);
+            this.reorderLevelTextBox.Location = new System.Drawing.Point(341, 203);
             this.reorderLevelTextBox.Name = "reorderLevelTextBox";
             this.reorderLevelTextBox.ReadOnly = true;
             this.reorderLevelTextBox.Size = new System.Drawing.Size(224, 26);
@@ -123,7 +123,7 @@
             // 
             // availableQuantityTextBox
             // 
-            this.availableQuantityTextBox.Location = new System.Drawing.Point(293, 245);
+            this.availableQuantityTextBox.Location = new System.Drawing.Point(341, 245);
             this.availableQuantityTextBox.Name = "availableQuantityTextBox";
             this.availableQuantityTextBox.ReadOnly = true;
             this.availableQuantityTextBox.Size = new System.Drawing.Size(224, 26);
@@ -131,14 +131,14 @@
             // 
             // stockInQuantityTextBox
             // 
-            this.stockInQuantityTextBox.Location = new System.Drawing.Point(293, 288);
+            this.stockInQuantityTextBox.Location = new System.Drawing.Point(341, 288);
             this.stockInQuantityTextBox.Name = "stockInQuantityTextBox";
             this.stockInQuantityTextBox.Size = new System.Drawing.Size(224, 26);
             this.stockInQuantityTextBox.TabIndex = 5;
             // 
             // SaveButton
             // 
-            this.SaveButton.Location = new System.Drawing.Point(417, 334);
+            this.SaveButton.Location = new System.Drawing.Point(465, 334);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(100, 36);
             this.SaveButton.TabIndex = 6;
@@ -149,7 +149,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(197, 71);
+            this.label1.Location = new System.Drawing.Point(245, 71);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(76, 20);
             this.label1.TabIndex = 7;
@@ -158,7 +158,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(200, 117);
+            this.label2.Location = new System.Drawing.Point(248, 117);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(73, 20);
             this.label2.TabIndex = 8;
@@ -167,7 +167,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(232, 161);
+            this.label3.Location = new System.Drawing.Point(280, 161);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(41, 20);
             this.label3.TabIndex = 9;
@@ -176,7 +176,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(165, 206);
+            this.label4.Location = new System.Drawing.Point(213, 206);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(108, 20);
             this.label4.TabIndex = 10;
@@ -185,7 +185,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(138, 248);
+            this.label5.Location = new System.Drawing.Point(186, 248);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(135, 20);
             this.label5.TabIndex = 11;
@@ -194,7 +194,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(142, 291);
+            this.label6.Location = new System.Drawing.Point(190, 291);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(131, 20);
             this.label6.TabIndex = 12;
@@ -219,17 +219,10 @@
             this.displayStockInDataGridView.Name = "displayStockInDataGridView";
             this.displayStockInDataGridView.ReadOnly = true;
             this.displayStockInDataGridView.RowTemplate.Height = 28;
-            this.displayStockInDataGridView.Size = new System.Drawing.Size(651, 196);
+            this.displayStockInDataGridView.Size = new System.Drawing.Size(778, 196);
             this.displayStockInDataGridView.TabIndex = 13;
+            this.displayStockInDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.displayStockInDataGridView_CellContentClick);
             this.displayStockInDataGridView.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.displayStockInDataGridView_RowPostPaint);
-            // 
-            // messageLabel
-            // 
-            this.messageLabel.AutoSize = true;
-            this.messageLabel.Location = new System.Drawing.Point(200, 342);
-            this.messageLabel.Name = "messageLabel";
-            this.messageLabel.Size = new System.Drawing.Size(0, 20);
-            this.messageLabel.TabIndex = 14;
             // 
             // SL
             // 
@@ -282,11 +275,19 @@
             this.Status.ReadOnly = true;
             this.Status.Visible = false;
             // 
+            // messageLabel
+            // 
+            this.messageLabel.AutoSize = true;
+            this.messageLabel.Location = new System.Drawing.Point(248, 342);
+            this.messageLabel.Name = "messageLabel";
+            this.messageLabel.Size = new System.Drawing.Size(0, 20);
+            this.messageLabel.TabIndex = 14;
+            // 
             // StockInForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(675, 613);
+            this.ClientSize = new System.Drawing.Size(804, 613);
             this.Controls.Add(this.messageLabel);
             this.Controls.Add(this.displayStockInDataGridView);
             this.Controls.Add(this.label6);
