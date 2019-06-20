@@ -58,7 +58,9 @@
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Company.cs" />
+    <Compile Include="Models\Item.cs" />
     <Compile Include="Models\Stock.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -87,6 +89,9 @@
     <EmbeddedResource Include="StockInForm.resx">
       <DependentUpon>StockInForm.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Properties\DataSources\StockManagementSystem.Models.Category.datasource" />
+    <None Include="Properties\DataSources\StockManagementSystem.Models.Company.datasource" />
+    <None Include="Properties\DataSources\StockManagementSystem.Models.Item.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -100,8 +105,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Properties\DataSources\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

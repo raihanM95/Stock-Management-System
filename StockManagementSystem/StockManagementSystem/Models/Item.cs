@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace StockManagementSystem.Models
 {
-    class Item
+    public class Item
     {
+        public int ID { get; set; }
+        public string ItemName { get; set; }
+        public int ReorderLevel { get; set; }
     }
 }
