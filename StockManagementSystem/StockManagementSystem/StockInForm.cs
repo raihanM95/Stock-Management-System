@@ -29,6 +29,8 @@ namespace StockManagementSystem
             InitializeComponent();
 
             sqlConnection = new SqlConnection(connectionString);
+
+            DisplayStock();
         }
 
         private void StockInForm_Load(object sender, EventArgs e)
@@ -316,5 +318,85 @@ namespace StockManagementSystem
 
             SaveButton.Text = "Save";
         }
+
+        private void DisplayStock()
+        {
+            try
+            {
+                commandString = @"SELECT * FROM StocksView";
+                sqlCommand = new SqlCommand(commandString, sqlConnection);
+
+                sqlConnection.Open();
+
+                SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+                DataTable dataTable = new DataTable();
+                sqlDataAdapter.Fill(dataTable);
+
+                if (dataTable.Rows.Count > 0)
+                {
+                    displayStockInDataGridView.DataSource = dataTable;
+                }
+                sqlConnection.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void displayStockInDataGridView_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        {
+            displayStockInDataGridView.Rows[e.RowIndex].Cells[0].Value = (e.RowIndex + 1).ToString();
+        }
+
+        //private void BindStocksGridView(List<Stock> stockList)
+        //{
+        //    try
+        //    {
+        //        int serial = 0;
+        //        string action = "Edit";
+        //        displayStockInDataGridView.Rows.Clear();
+        //        foreach (var stoc in stockList)
+        //        {
+        //            serial++;
+        //            displayStockInDataGridView.Rows.Add(serial, stoc.ID, stoc.ItemID, stoc.ItemName, stoc.Date, stoc.Quantity, stoc.Status);
+        //        }
+        //    }
+        //    catch(Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message);
+        //    }
+        //}
+
+        //private List<Stock> GetStocks()
+        //{
+        //    List<Stock> stockList = new List<Stock>();
+        //    try
+        //    {
+        //        commandString = "SELECT * FROM StocksView";
+
+        //        sqlCommand = new SqlCommand(commandString, sqlConnection);
+        //        sqlConnection.Open();
+
+        //        reader = sqlCommand.ExecuteReader();
+        //        while (reader.Read())
+        //        {
+        //            stock.ID = Convert.ToInt32(reader["ID"]);
+        //            stock.ItemID = Convert.ToInt32(reader["ItemID"]);
+        //            stock.ItemName = reader["ItemName"].ToString();
+        //            stock.Date = Convert.ToDateTime(reader["Date"]);
+        //            stock.Quantity = Convert.ToInt32(reader["Quantity"]);
+        //            stock.Status = reader["Status"].ToString();
+        //            stockList.Add(stock);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message);
+        //    }
+        //    sqlConnection.Close();
+
+        //    return stockList;
+        //}
     }
 }
