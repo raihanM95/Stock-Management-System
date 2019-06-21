@@ -32,15 +32,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.nameTextBox = new System.Windows.Forms.TextBox();
             this.SaveButton = new System.Windows.Forms.Button();
-            this.displayDataGridView = new System.Windows.Forms.DataGridView();
+            this.categoryDataGridView = new System.Windows.Forms.DataGridView();
             this.categoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.SL = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.categoryBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.displayDataGridView)).BeginInit();
+            this.dataGridViewTextBoxColumn_SL = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.categoryDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -71,60 +69,66 @@
             this.SaveButton.UseVisualStyleBackColor = true;
             this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
-            // displayDataGridView
+            // categoryDataGridView
             // 
-            this.displayDataGridView.AutoGenerateColumns = false;
-            this.displayDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.displayDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.SL,
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2});
-            this.displayDataGridView.DataSource = this.categoryBindingSource1;
-            this.displayDataGridView.Location = new System.Drawing.Point(34, 122);
-            this.displayDataGridView.Name = "displayDataGridView";
-            this.displayDataGridView.Size = new System.Drawing.Size(243, 197);
-            this.displayDataGridView.TabIndex = 3;
-            this.displayDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.displayDataGridView_CellClick);
-            this.displayDataGridView.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.displayDataGridView_RowPostPaint);
+            this.categoryDataGridView.AutoGenerateColumns = false;
+            this.categoryDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.categoryDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn_SL,
+            this.dataGridViewTextBoxColumn_ID,
+            this.dataGridViewTextBoxColumn_Name});
+            this.categoryDataGridView.DataSource = this.categoryBindingSource;
+            this.categoryDataGridView.Location = new System.Drawing.Point(33, 116);
+            this.categoryDataGridView.Name = "categoryDataGridView";
+            this.categoryDataGridView.RowHeadersVisible = false;
+            this.categoryDataGridView.Size = new System.Drawing.Size(231, 197);
+            this.categoryDataGridView.TabIndex = 3;
+            this.categoryDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.categoryDataGridView_CellClick_1);
+            this.categoryDataGridView.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.categoryDataGridView_RowPostPaint_1);
             // 
-            // SL
+            // categoryBindingSource
             // 
-            this.SL.HeaderText = "SL";
-            this.SL.Name = "SL";
+            this.categoryBindingSource.DataSource = typeof(StockManagementSystem.Models.Category);
             // 
-            // dataGridViewTextBoxColumn1
+            // dataGridViewTextBoxColumn_SL
             // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "ID";
-            this.dataGridViewTextBoxColumn1.HeaderText = "ID";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.Visible = false;
+            this.dataGridViewTextBoxColumn_SL.HeaderText = "SL";
+            this.dataGridViewTextBoxColumn_SL.MinimumWidth = 15;
+            this.dataGridViewTextBoxColumn_SL.Name = "dataGridViewTextBoxColumn_SL";
+            this.dataGridViewTextBoxColumn_SL.ReadOnly = true;
+            this.dataGridViewTextBoxColumn_SL.Width = 30;
             // 
-            // dataGridViewTextBoxColumn2
+            // dataGridViewTextBoxColumn_ID
             // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "Name";
-            this.dataGridViewTextBoxColumn2.HeaderText = "Name";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn_ID.DataPropertyName = "ID";
+            this.dataGridViewTextBoxColumn_ID.HeaderText = "ID";
+            this.dataGridViewTextBoxColumn_ID.Name = "dataGridViewTextBoxColumn_ID";
+            this.dataGridViewTextBoxColumn_ID.ReadOnly = true;
+            this.dataGridViewTextBoxColumn_ID.Visible = false;
             // 
-            // categoryBindingSource1
+            // dataGridViewTextBoxColumn_Name
             // 
-            this.categoryBindingSource1.DataSource = typeof(StockManagementSystem.Models.Category);
+            this.dataGridViewTextBoxColumn_Name.DataPropertyName = "Name";
+            this.dataGridViewTextBoxColumn_Name.HeaderText = "Name";
+            this.dataGridViewTextBoxColumn_Name.Name = "dataGridViewTextBoxColumn_Name";
+            this.dataGridViewTextBoxColumn_Name.ReadOnly = true;
+            this.dataGridViewTextBoxColumn_Name.Width = 180;
             // 
             // CategorySetupForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(310, 355);
-            this.Controls.Add(this.displayDataGridView);
+            this.ClientSize = new System.Drawing.Size(309, 355);
+            this.Controls.Add(this.categoryDataGridView);
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.nameTextBox);
             this.Controls.Add(this.label1);
             this.Name = "CategorySetupForm";
             this.Text = "Category Setup";
             this.Load += new System.EventHandler(this.CategorySetupForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.displayDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.categoryDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -135,13 +139,14 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox nameTextBox;
         private System.Windows.Forms.Button SaveButton;
-        private System.Windows.Forms.DataGridView displayDataGridView;
+        private System.Windows.Forms.DataGridView categoryDataGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource categoryBindingSource;
-        private System.Windows.Forms.BindingSource categoryBindingSource1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SL;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.BindingSource categoryBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn_SL;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn_ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn_Name;
     }
 }

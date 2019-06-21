@@ -15,7 +15,7 @@ namespace StockManagementSystem
 {
     public partial class CategorySetupForm : Form
     {
-        string connectionString = @"Server=DESKTOP-ON380RK\SQLEXPRESS; Database=StockManagementSystemDB; Integrated Security=True";
+        string connectionString = @"Server=LAPTOP-BASHAROV\SQLEXPRESS; Database=StockManagementSystemDB; Integrated Security=True";
         SqlConnection sqlConnection;
 
         private string commandString ;
@@ -33,78 +33,197 @@ namespace StockManagementSystem
 
         private void CategorySetupForm_Load(object sender, EventArgs e)
         {
-            LoadDisplayGridView();
+            LoadCategoryDataGridView();
         }
 
-        private void LoadDisplayGridView()
+        private void LoadCategoryDataGridView()
         {
-            commandString = @"SELECT * FROM Categorys";
-            sqlCommand = new SqlCommand(commandString, sqlConnection);
-
-            sqlConnection.Open();
-
-            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
-
-            DataTable dataTable = new DataTable();
-            sqlDataAdapter.Fill(dataTable);
-
-
-            if (dataTable.Rows.Count > 0)
+            try
             {
-                displayDataGridView.DataSource = dataTable;
+                commandString = @"SELECT * FROM Categorys";
+                sqlCommand = new SqlCommand(commandString, sqlConnection);
+
+                sqlConnection.Open();
+
+                SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+
+                DataTable dataTable = new DataTable();
+                sqlDataAdapter.Fill(dataTable);
+
+
+                if (dataTable.Rows.Count > 0)
+                {
+                    categoryDataGridView.DataSource = dataTable;
+                }
+
+
+
+                sqlConnection.Close();
             }
 
+            
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
 
-
-            sqlConnection.Close();
         }
 
-        private void displayDataGridView_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
-        {
-            displayDataGridView.Rows[e.RowIndex].Cells[0].Value = (e.RowIndex + 1).ToString();
-        }
+      
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            category.Name = nameTextBox.Text;
-            InsertCategory(category);
-            LoadDisplayGridView();
-            nameTextBox.Clear();
+      
+       try
+            {
+                DataTable dataTable = new DataTable();
+                if (SaveButton.Text.Equals("Save"))
+                {
+                    category.Name = nameTextBox.Text;
+                    if (String.IsNullOrEmpty(category.Name))
+                    {
+                        MessageBox.Show("Category Name Can not be Empty!");
+                        return;
+                    }
+                    dataTable = ValidationCheck(category);
+                    if (dataTable.Rows.Count > 0)
+                    {
+                        MessageBox.Show("Category  [ " + category.Name + " ]  alreday Exist!!");
+                        return;
 
+                    }
+                    InsertCategory(category);
+
+
+                }
+                else
+                {
+                    
+                    category.Name = nameTextBox.Text;
+                    UpdateCategory(category);
+                    SaveButton.Text = "Save";
+                }
+                nameTextBox.Clear();
+                LoadCategoryDataGridView();
+
+            }
+            catch(Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
         }
-       
-
         private void InsertCategory(Category category)
         {
-            commandString = @"INSERT INTO Categorys  ( Name ) VALUES ('"+category.Name+"')";
+            try
+            {
+                commandString = @"INSERT INTO Categorys  ( Name ) VALUES ('" + category.Name + "')";
+                sqlCommand = new SqlCommand(commandString, sqlConnection);
+
+                sqlConnection.Open();
+
+                int isExecuted = 0;
+
+                isExecuted = sqlCommand.ExecuteNonQuery();
+
+                if (isExecuted > 0)
+                {
+                    MessageBox.Show("Saved Succesfully");
+                }
+                else
+                {
+                    MessageBox.Show("Sorry! Saved Failed");
+                }
+
+                sqlConnection.Close();
+
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+            
+        }
+
+        private void UpdateCategory(Category category)
+        {
+            try
+            {
+                commandString = "UPDATE Categorys SET Name =  '" + category.Name + "' WHERE ID = " + category.ID + "";
+                sqlCommand = new SqlCommand(commandString, sqlConnection);
+
+                sqlConnection.Open();
+
+                int isExecuted = 0;
+
+                isExecuted = sqlCommand.ExecuteNonQuery();
+
+                if (isExecuted > 0)
+                {
+                    MessageBox.Show("Updated Succesfully");
+                }
+                else
+                {
+                    MessageBox.Show("Sorry! Updated Failed");
+                }
+
+                sqlConnection.Close();
+
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+
+        }
+
+        
+
+        private DataTable ValidationCheck(Category category)
+        {
+            
+            if (!String.IsNullOrEmpty(category.Name))
+            {
+                commandString = @"SELECT * FROM Categorys WHERE Name = '"+category.Name+"'";
+            }
+
+            
             sqlCommand = new SqlCommand(commandString, sqlConnection);
 
             sqlConnection.Open();
 
-            int isExecuted = 0;
-
-            isExecuted = sqlCommand.ExecuteNonQuery();
-
-            if (isExecuted > 0)
-            {
-                MessageBox.Show("Saved");
-            }
-            else
-            {
-                MessageBox.Show("Not Saved");
-            }
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(sqlCommand);
+            DataTable dataTable = new DataTable();
+            dataAdapter.Fill(dataTable);
 
             sqlConnection.Close();
+
+            
+            return dataTable;
         }
 
-        private void displayDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void categoryDataGridView_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
-            //if (displayDataGridView.Rows[e.RowIndex].Cells[0].Value != null)
-            //{
-            //    displayDataGridView.CurrentRow.Selected = true;
-            //    nameTextBox.Text = displayDataGridView.Rows[e.RowIndex].Cells["category.Name"].FormattedValue.ToString();
-            //    // nameTextBox.Text = displayDataGridView.CurrentRow.Cells[category.Name].Value.ToString();
-            //}
+            try
+            {
+                if (categoryDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
+                {
+                    categoryDataGridView.CurrentRow.Selected = true;
+                    nameTextBox.Text = categoryDataGridView.Rows[e.RowIndex].Cells["dataGridViewTextBoxColumn_Name"].FormattedValue.ToString();
+                    category.ID = Convert.ToInt32(categoryDataGridView.Rows[e.RowIndex].Cells["dataGridViewTextBoxColumn_ID"].FormattedValue);
+                    SaveButton.Text = "Update";
+
+                }
+
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+        }
+
+        private void categoryDataGridView_RowPostPaint_1(object sender, DataGridViewRowPostPaintEventArgs e)
+        {
+            categoryDataGridView.Rows[e.RowIndex].Cells[0].Value = (e.RowIndex + 1).ToString();
         }
     }
 }

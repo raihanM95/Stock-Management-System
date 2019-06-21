@@ -54,6 +54,12 @@
     <Compile Include="CategorySetupForm.Designer.cs">
       <DependentUpon>CategorySetupForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CompanySetupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CompanySetupForm.designer.cs">
+      <DependentUpon>CompanySetupForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="HomeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,6 +89,9 @@
     <Compile Include="Models\User.cs" />
     <EmbeddedResource Include="CategorySetupForm.resx">
       <DependentUpon>CategorySetupForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CompanySetupForm.resx">
+      <DependentUpon>CompanySetupForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HomeForm.resx">
       <DependentUpon>HomeForm.cs</DependentUpon>
