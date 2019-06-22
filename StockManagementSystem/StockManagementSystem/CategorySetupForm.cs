@@ -51,18 +51,18 @@ namespace StockManagementSystem
                         MessageBox.Show("Category Name Can not be Empty!");
                         return;
                     }
-                    //dataTable = _categoryManager.ValidationCheck(category);
-                    bool isExist = _categoryManager.ValidationCheck(category);
-                    if ( isExist == true)
+                    
+                    bool validationCheck = _categoryManager.ValidationCheck(category);
+                    if (validationCheck == true)
                     {
                         MessageBox.Show("Category  [ " + category.Name + " ]  alreday Exist!!");
                         return;
 
                     }
-                    //InsertCategory(category);
-                    int isExecuted;
-                    isExecuted = _categoryManager.InsertCategory(category);
-                    if (isExecuted > 0)
+                  
+                    int insert;
+                    insert = _categoryManager.InsertCategory(category);
+                    if (insert > 0)
                     {
                         MessageBox.Show("Saved Succesfully");
                     }
@@ -77,9 +77,9 @@ namespace StockManagementSystem
                 {
                     
                     category.Name = nameTextBox.Text;
-                    int isExist;
-                    isExist = _categoryManager.UpdateCategory(category);
-                    if (isExist > 0)
+                    int update;
+                    update = _categoryManager.UpdateCategory(category);
+                    if (update > 0)
                     {
                         MessageBox.Show("Updated Succesfully");
                     }

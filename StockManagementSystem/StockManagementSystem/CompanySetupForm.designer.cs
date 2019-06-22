@@ -36,8 +36,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.categoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridViewTextBoxColumn_SL = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DataGridViewTextBoxColumn_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DataGridViewTextBoxColumn_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.companyDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -56,8 +56,8 @@
             this.companyDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.companyDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn_SL,
-            this.iDDataGridViewTextBoxColumn,
-            this.nameDataGridViewTextBoxColumn});
+            this.DataGridViewTextBoxColumn_ID,
+            this.DataGridViewTextBoxColumn_Name});
             this.companyDataGridView.DataSource = this.categoryBindingSource;
             this.companyDataGridView.Location = new System.Drawing.Point(37, 132);
             this.companyDataGridView.Name = "companyDataGridView";
@@ -106,19 +106,19 @@
             this.dataGridViewTextBoxColumn_SL.ReadOnly = true;
             this.dataGridViewTextBoxColumn_SL.Width = 70;
             // 
-            // iDDataGridViewTextBoxColumn
+            // DataGridViewTextBoxColumn_ID
             // 
-            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
-            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
-            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
-            this.iDDataGridViewTextBoxColumn.Visible = false;
+            this.DataGridViewTextBoxColumn_ID.DataPropertyName = "ID";
+            this.DataGridViewTextBoxColumn_ID.HeaderText = "ID";
+            this.DataGridViewTextBoxColumn_ID.Name = "DataGridViewTextBoxColumn_ID";
+            this.DataGridViewTextBoxColumn_ID.Visible = false;
             // 
-            // nameDataGridViewTextBoxColumn
+            // DataGridViewTextBoxColumn_Name
             // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.Width = 200;
+            this.DataGridViewTextBoxColumn_Name.DataPropertyName = "Name";
+            this.DataGridViewTextBoxColumn_Name.HeaderText = "Name";
+            this.DataGridViewTextBoxColumn_Name.Name = "DataGridViewTextBoxColumn_Name";
+            this.DataGridViewTextBoxColumn_Name.Width = 200;
             // 
             // CompanySetupForm
             // 
@@ -148,9 +148,9 @@
         private System.Windows.Forms.Button SaveButton;
         private System.Windows.Forms.TextBox nameTextBox;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn_SL;
-        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource categoryBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn_SL;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DataGridViewTextBoxColumn_ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DataGridViewTextBoxColumn_Name;
     }
 }

@@ -20,7 +20,7 @@ namespace StockManagementSystem
             //Application.Run(new LoginForm());
             //Application.Run(new StockInForm());
             Application.Run(new CategorySetupForm());
-          //  Application.Run(new CompanySetupForm());
+          // Application.Run(new CompanySetupForm());
 
         }
     }

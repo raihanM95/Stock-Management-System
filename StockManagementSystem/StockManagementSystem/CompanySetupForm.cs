@@ -1,79 +1,42 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using StockManagementSystem.BLL;
 using StockManagementSystem.Models;
 
 namespace StockManagementSystem
 {
     public partial class CompanySetupForm : Form
     {
-        string connectionString = @"Server=LAPTOP-BASHAROV\SQLEXPRESS; Database=StockManagementSystemDB; Integrated Security=True";
-        SqlConnection sqlConnection;
-
-        private string commandString;
-        SqlCommand sqlCommand;
 
         public Company company ;
-
+        CompanyManager _companyManager = new CompanyManager();
 
         public CompanySetupForm()
         {
             InitializeComponent();
-            sqlConnection = new SqlConnection(connectionString);
+            
             company = new Company();
         }
 
         private void CompanySetupForm_Load(object sender, EventArgs e)
         {
-            LoadCompanyDataGridView();
+            companyDataGridView.DataSource = _companyManager.LoadCompanyDataGridView();
         }
 
 
-        private void LoadCompanyDataGridView()
-        {
-            try
-            {
-                commandString = @"SELECT * FROM Companys";
-                sqlCommand = new SqlCommand(commandString, sqlConnection);
-
-                sqlConnection.Open();
-
-                SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
-
-                DataTable dataTable = new DataTable();
-                sqlDataAdapter.Fill(dataTable);
-
-
-                if (dataTable.Rows.Count > 0)
-                {
-                    companyDataGridView.DataSource = dataTable;
-                }
-
-
-
-                sqlConnection.Close();
-            }
-
-
-            catch (Exception exception)
-            {
-                MessageBox.Show(exception.Message);
-            }
-
-        }
+      
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
             try
             {
-                DataTable dataTable = new DataTable();
+                
                 if (SaveButton.Text.Equals("Save"))
                 {
                     company.Name = nameTextBox.Text;
@@ -82,25 +45,47 @@ namespace StockManagementSystem
                         MessageBox.Show("Category Name Can not be Empty!");
                         return;
                     }
-                    dataTable = ValidationCheck(company);
-                    if (dataTable.Rows.Count > 0)
+                    
+                    bool validationCheck = _companyManager.ValidationCheck(company);
+                    if (validationCheck == true)
                     {
                         MessageBox.Show("Company  [ " + company.Name + " ]  alreday Exist!!");
                         return;
 
                     }
-                    InsertCompany(company);
+                    
+                    int insert = _companyManager.InsertCompany(company);
+
+                    if (insert > 0)
+                    {
+                        MessageBox.Show("Saved Succesfully");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Sorry! Saved Failed");
+                    }
+                    companyDataGridView.DataSource = _companyManager.LoadCompanyDataGridView();
 
                 }
                 else
                 {
 
                     company.Name = nameTextBox.Text;
-                    UpdateCompany(company);
+                    int update = _companyManager.UpdateCompany(company);
+
+                    if (update > 0)
+                    {
+                        MessageBox.Show("Updated Succesfully");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Sorry! Updated Failed");
+                    }
                     SaveButton.Text = "Save";
                 }
                 nameTextBox.Clear();
-                LoadCompanyDataGridView();
+                companyDataGridView.DataSource = _companyManager.LoadCompanyDataGridView();
+
 
             }
             catch (Exception exception)
@@ -109,95 +94,8 @@ namespace StockManagementSystem
             }
         }
 
-
-        private void InsertCompany(Company company)
-        {
-            try
-            {
-                commandString = @"INSERT INTO Companys  ( Name ) VALUES ('" + company.Name + "')";
-                sqlCommand = new SqlCommand(commandString, sqlConnection);
-
-                sqlConnection.Open();
-
-                int isExecuted = 0;
-
-                isExecuted = sqlCommand.ExecuteNonQuery();
-
-                if (isExecuted > 0)
-                {
-                    MessageBox.Show("Saved Succesfully");
-                }
-                else
-                {
-                    MessageBox.Show("Sorry! Saved Failed");
-                }
-
-                sqlConnection.Close();
-
-            }
-            catch (Exception exception)
-            {
-                MessageBox.Show(exception.Message);
-            }
-
-        }
-
-        private void UpdateCompany(Company company )
-        {
-            try
-            {
-                commandString = "UPDATE Companys SET Name =  '" + company.Name + "' WHERE ID = " + company.ID + "";
-                sqlCommand = new SqlCommand(commandString, sqlConnection);
-
-                sqlConnection.Open();
-
-                int isExecuted = 0;
-
-                isExecuted = sqlCommand.ExecuteNonQuery();
-
-                if (isExecuted > 0)
-                {
-                    MessageBox.Show("Updated Succesfully");
-                }
-                else
-                {
-                    MessageBox.Show("Sorry! Updated Failed");
-                }
-
-                sqlConnection.Close();
-
-            }
-            catch (Exception exception)
-            {
-                MessageBox.Show(exception.Message);
-            }
-
-        }
 
        
-
-        private DataTable ValidationCheck(Company company )
-        {
-
-            if (!String.IsNullOrEmpty(company.Name))
-            {
-                commandString = @"SELECT * FROM Companys WHERE Name = '" + company.Name + "'";
-            }
-
-
-            sqlCommand = new SqlCommand(commandString, sqlConnection);
-
-            sqlConnection.Open();
-
-            SqlDataAdapter dataAdapter = new SqlDataAdapter(sqlCommand);
-            DataTable dataTable = new DataTable();
-            dataAdapter.Fill(dataTable);
-
-            sqlConnection.Close();
-
-
-            return dataTable;
-        }
 
         private void companyDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
