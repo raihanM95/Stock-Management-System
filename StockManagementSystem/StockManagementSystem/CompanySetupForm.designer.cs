@@ -34,12 +34,12 @@
             this.SaveButton = new System.Windows.Forms.Button();
             this.nameTextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.companyBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.categoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridViewTextBoxColumn_SL = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.companyDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.companyBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -56,13 +56,13 @@
             this.companyDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.companyDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn_SL,
-            this.dataGridViewTextBoxColumn_ID,
-            this.dataGridViewTextBoxColumn_Name});
-            this.companyDataGridView.DataSource = this.companyBindingSource;
+            this.iDDataGridViewTextBoxColumn,
+            this.nameDataGridViewTextBoxColumn});
+            this.companyDataGridView.DataSource = this.categoryBindingSource;
             this.companyDataGridView.Location = new System.Drawing.Point(37, 132);
             this.companyDataGridView.Name = "companyDataGridView";
             this.companyDataGridView.RowHeadersVisible = false;
-            this.companyDataGridView.Size = new System.Drawing.Size(257, 197);
+            this.companyDataGridView.Size = new System.Drawing.Size(242, 197);
             this.companyDataGridView.TabIndex = 7;
             this.companyDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.companyDataGridView_CellClick);
             this.companyDataGridView.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.companyDataGridView_RowPostPaint);
@@ -95,9 +95,9 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "Name";
             // 
-            // companyBindingSource
+            // categoryBindingSource
             // 
-            this.companyBindingSource.DataSource = typeof(StockManagementSystem.Models.Company);
+            this.categoryBindingSource.DataSource = typeof(StockManagementSystem.Models.Category);
             // 
             // dataGridViewTextBoxColumn_SL
             // 
@@ -106,27 +106,26 @@
             this.dataGridViewTextBoxColumn_SL.ReadOnly = true;
             this.dataGridViewTextBoxColumn_SL.Width = 70;
             // 
-            // dataGridViewTextBoxColumn_ID
+            // iDDataGridViewTextBoxColumn
             // 
-            this.dataGridViewTextBoxColumn_ID.DataPropertyName = "ID";
-            this.dataGridViewTextBoxColumn_ID.HeaderText = "ID";
-            this.dataGridViewTextBoxColumn_ID.Name = "dataGridViewTextBoxColumn_ID";
-            this.dataGridViewTextBoxColumn_ID.Visible = false;
+            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
+            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
+            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
+            this.iDDataGridViewTextBoxColumn.Visible = false;
             // 
-            // dataGridViewTextBoxColumn_Name
+            // nameDataGridViewTextBoxColumn
             // 
-            this.dataGridViewTextBoxColumn_Name.DataPropertyName = "Name";
-            this.dataGridViewTextBoxColumn_Name.HeaderText = "Name";
-            this.dataGridViewTextBoxColumn_Name.Name = "dataGridViewTextBoxColumn_Name";
-            this.dataGridViewTextBoxColumn_Name.ReadOnly = true;
-            this.dataGridViewTextBoxColumn_Name.Width = 180;
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.Width = 200;
             // 
             // CompanySetupForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(329, 362);
+            this.ClientSize = new System.Drawing.Size(319, 362);
             this.Controls.Add(this.companyDataGridView);
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.nameTextBox);
@@ -136,7 +135,7 @@
             this.Text = "CompanySetupForm";
             this.Load += new System.EventHandler(this.CompanySetupForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.companyDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.companyBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -149,9 +148,9 @@
         private System.Windows.Forms.Button SaveButton;
         private System.Windows.Forms.TextBox nameTextBox;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.BindingSource companyBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn_SL;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn_ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn_Name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource categoryBindingSource;
     }
 }
