@@ -18,27 +18,22 @@ namespace StockManagementSystem.BLL
 
         public DataTable LoadCompanyDataGridView()
         {
-            return _companyRepository.LoadCompanyDataGridView();   
+            return _companyRepository.LoadCompanyDataGridView();
+        }
+
+        public bool ValidationCheck(Company company)
+        {
+            return _companyRepository.ValidationCheck(company);
         }
 
         public int InsertCompany(Company company)
         {
-
             return _companyRepository.InsertCompany(company);
         }
 
         public int UpdateCompany(Company company)
         {
             return _companyRepository.UpdateCompany(company);
-
-        }
-
-
-
-        public bool ValidationCheck(Company company)
-        {
-
-            return _companyRepository.ValidationCheck(company);
         }
     }
 }

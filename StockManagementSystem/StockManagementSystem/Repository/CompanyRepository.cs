@@ -12,95 +12,67 @@ namespace StockManagementSystem.Repository
     public class CompanyRepository
     {
 
-        string connectionString = @"Server=LAPTOP-BASHAROV\SQLEXPRESS; Database=StockManagementSystemDB; Integrated Security=True";
+        string connectionString = @"Server=DESKTOP-ON380RK\SQLEXPRESS; Database=StockManagementSystemDB; Integrated Security=True";
         SqlConnection sqlConnection;
 
         private string commandString;
         SqlCommand sqlCommand;
-        // sqlConnection = new SqlConnection(connectionString);
 
         public DataTable LoadCompanyDataGridView()
         {
             sqlConnection = new SqlConnection(connectionString);
             commandString = @"SELECT * FROM Companys";
             sqlCommand = new SqlCommand(commandString, sqlConnection);
-            
 
             sqlConnection.Open();
 
             SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
-
             DataTable dataTable = new DataTable();
-            DataTable dataTableReturn = new DataTable();
-
             sqlDataAdapter.Fill(dataTable);
-
-
-            if (dataTable.Rows.Count > 0)
-            {
-                dataTableReturn = dataTable;
-            }
-
-
 
             sqlConnection.Close();
 
-            return dataTableReturn;
+            return dataTable;
         }
 
         public int InsertCompany(Company company)
         {
             sqlConnection = new SqlConnection(connectionString);
-
-            commandString = @"INSERT INTO Companys  ( Name ) VALUES ('" + company.Name + "')";
+            commandString = @"INSERT INTO Companys (Name) VALUES ('" + company.Name + "')";
             sqlCommand = new SqlCommand(commandString, sqlConnection);
-            
 
             sqlConnection.Open();
 
-            int insert = 0;
-
-            insert = sqlCommand.ExecuteNonQuery();
+            int isExecuted = 0;
+            isExecuted = sqlCommand.ExecuteNonQuery();
 
             sqlConnection.Close();
 
-            return insert;
+            return isExecuted;
         }
 
         public int UpdateCompany(Company company)
         {
             sqlConnection = new SqlConnection(connectionString);
-
-            commandString = "UPDATE Companys SET Name =  '" + company.Name + "' WHERE ID = " + company.ID + "";
+            commandString = "UPDATE Companys SET Name = '" + company.Name + "' WHERE ID = " + company.ID + "";
             sqlCommand = new SqlCommand(commandString, sqlConnection);
             
-
             sqlConnection.Open();
 
-            int update = 0;
+            int isExecuted = 0;
 
-            update = sqlCommand.ExecuteNonQuery();
-
-            
+            isExecuted = sqlCommand.ExecuteNonQuery();
 
             sqlConnection.Close();
-            return update;
 
+            return isExecuted;
         }
-
-
 
         public bool ValidationCheck(Company company)
         {
             sqlConnection = new SqlConnection(connectionString);
-            if (!String.IsNullOrEmpty(company.Name))
-            {
-                commandString = @"SELECT * FROM Companys WHERE Name = '" + company.Name + "'";
-            }
-
-
+            commandString = @"SELECT * FROM Companys WHERE Name = '" + company.Name + "'";
             sqlCommand = new SqlCommand(commandString, sqlConnection);
-          
 
             sqlConnection.Open();
 
@@ -108,17 +80,15 @@ namespace StockManagementSystem.Repository
             DataTable dataTable = new DataTable();
             dataAdapter.Fill(dataTable);
 
-            bool validationCheck = false;
+            bool isExist = false;
             if (dataTable.Rows.Count > 0)
             {
-                validationCheck = true;
-
+                isExist = true;
             }
 
             sqlConnection.Close();
 
-
-            return validationCheck;
+            return isExist;
         }
     }
 }

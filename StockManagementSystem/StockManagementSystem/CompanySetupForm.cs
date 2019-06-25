@@ -13,7 +13,6 @@ namespace StockManagementSystem
 {
     public partial class CompanySetupForm : Form
     {
-
         public Company company ;
         CompanyManager _companyManager = new CompanyManager();
 
@@ -29,29 +28,24 @@ namespace StockManagementSystem
             companyDataGridView.DataSource = _companyManager.LoadCompanyDataGridView();
         }
 
-
-      
-
         private void SaveButton_Click(object sender, EventArgs e)
         {
             try
             {
-                
                 if (SaveButton.Text.Equals("Save"))
                 {
                     company.Name = nameTextBox.Text;
                     if (String.IsNullOrEmpty(company.Name))
                     {
-                        MessageBox.Show("Category Name Can not be Empty!");
+                        MessageBox.Show("Category Name can not be Empty!");
                         return;
                     }
                     
                     bool validationCheck = _companyManager.ValidationCheck(company);
                     if (validationCheck == true)
                     {
-                        MessageBox.Show("Company  [ " + company.Name + " ]  alreday Exist!!");
+                        MessageBox.Show("Company [ " + company.Name + " ] already Exist!!");
                         return;
-
                     }
                     
                     int insert = _companyManager.InsertCompany(company);
@@ -64,12 +58,11 @@ namespace StockManagementSystem
                     {
                         MessageBox.Show("Sorry! Saved Failed");
                     }
-                    companyDataGridView.DataSource = _companyManager.LoadCompanyDataGridView();
 
+                    companyDataGridView.DataSource = _companyManager.LoadCompanyDataGridView();
                 }
                 else
                 {
-
                     company.Name = nameTextBox.Text;
                     int update = _companyManager.UpdateCompany(company);
 
@@ -81,25 +74,21 @@ namespace StockManagementSystem
                     {
                         MessageBox.Show("Sorry! Updated Failed");
                     }
+
                     SaveButton.Text = "Save";
                 }
+
                 nameTextBox.Clear();
                 companyDataGridView.DataSource = _companyManager.LoadCompanyDataGridView();
-
-
             }
             catch (Exception exception)
             {
                 MessageBox.Show(exception.Message);
             }
         }
-
-
-       
-
+        
         private void companyDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            
             try
             {
                 if (companyDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
@@ -107,23 +96,19 @@ namespace StockManagementSystem
                     companyDataGridView.CurrentRow.Selected = true;
                     nameTextBox.Text = companyDataGridView.Rows[e.RowIndex].Cells["dataGridViewTextBoxColumn_Name"].FormattedValue.ToString();
                     company.ID = Convert.ToInt32(companyDataGridView.Rows[e.RowIndex].Cells["dataGridViewTextBoxColumn_ID"].FormattedValue);
+
                     SaveButton.Text = "Update";
-
                 }
-
             }
             catch (Exception exception)
             {
                 MessageBox.Show(exception.Message);
             }
-
         }
 
         private void companyDataGridView_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
             companyDataGridView.Rows[e.RowIndex].Cells[0].Value = (e.RowIndex + 1).ToString();
         }
-
-        
     }
 }

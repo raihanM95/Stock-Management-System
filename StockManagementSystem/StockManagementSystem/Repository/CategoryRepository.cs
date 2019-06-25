@@ -11,8 +11,8 @@ namespace StockManagementSystem.Repository
 {
     public class CategoryRepository
     {
-        string connectionString = @"Server=LAPTOP-BASHAROV\SQLEXPRESS; Database=StockManagementSystemDB; Integrated Security=True";
-        SqlConnection sqlConnection; 
+        string connectionString = @"Server=DESKTOP-ON380RK\SQLEXPRESS; Database=StockManagementSystemDB; Integrated Security=True";
+        SqlConnection sqlConnection;
 
         private string commandString;
         SqlCommand sqlCommand;
@@ -20,43 +20,24 @@ namespace StockManagementSystem.Repository
         public DataTable LoadCategoryDataGridView()
         {
             sqlConnection = new SqlConnection(connectionString);
-
             commandString = @"SELECT * FROM Categorys";
-            sqlCommand = new SqlCommand(commandString,sqlConnection);
-                
-
+            sqlCommand = new SqlCommand(commandString, sqlConnection);
+            
             sqlConnection.Open();
+
             SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
-
             DataTable dataTable = new DataTable();
-            DataTable dataTableReturn = new DataTable();
             sqlDataAdapter.Fill(dataTable);
-
-
-            if (dataTable.Rows.Count > 0)
-            {
-                dataTableReturn = dataTable;
-            }
-
-
 
             sqlConnection.Close();
 
-            return dataTableReturn;
-           
-
+            return dataTable;
         }
 
         public bool ValidationCheck(Category category)
         {
-
-
-            if (!String.IsNullOrEmpty(category.Name))
-            {
-                commandString = @"SELECT * FROM Categorys WHERE Name = '" + category.Name + "'";
-            }
-
-            bool isExist = false;
+            sqlConnection = new SqlConnection(connectionString);
+            commandString = @"SELECT * FROM Categorys WHERE Name = '" + category.Name + "'";
             sqlCommand = new SqlCommand(commandString, sqlConnection);
 
             sqlConnection.Open();
@@ -64,53 +45,50 @@ namespace StockManagementSystem.Repository
             SqlDataAdapter dataAdapter = new SqlDataAdapter(sqlCommand);
             DataTable dataTable = new DataTable();
             dataAdapter.Fill(dataTable);
+
+            bool isExist = false;
             if (dataTable.Rows.Count > 0)
             {
                 isExist = true;
             }
 
-                sqlConnection.Close();
-
+            sqlConnection.Close();
 
             return isExist;
         }
 
-        public int UpdateCategory(Category category)
-        {
-           
-                commandString = "UPDATE Categorys SET Name =  '" + category.Name + "' WHERE ID = " + category.ID + "";
-                sqlCommand = new SqlCommand(commandString, sqlConnection);
-
-                sqlConnection.Open();
-
-                int isExecuted = 0;
-
-                isExecuted = sqlCommand.ExecuteNonQuery();
-
-               
-
-                sqlConnection.Close();
-
-            return isExecuted;
-
-        }
-
         public int InsertCategory(Category category)
         {
-           
-                commandString = @"INSERT INTO Categorys  ( Name ) VALUES ('" + category.Name + "')";
-                sqlCommand = new SqlCommand(commandString, sqlConnection);
+            sqlConnection = new SqlConnection(connectionString);
+            commandString = @"INSERT INTO Categorys (Name) VALUES ('" + category.Name + "')";
+            sqlCommand = new SqlCommand(commandString, sqlConnection);
 
-                sqlConnection.Open();
+            sqlConnection.Open();
 
-                int isExecuted = 0;
+            int isExecuted = 0;
 
-                isExecuted = sqlCommand.ExecuteNonQuery();
-            
-                sqlConnection.Close();
+            isExecuted = sqlCommand.ExecuteNonQuery();
+
+            sqlConnection.Close();
 
             return isExecuted;
+        }
 
+        public int UpdateCategory(Category category)
+        {
+            sqlConnection = new SqlConnection(connectionString);
+            commandString = "UPDATE Categorys SET Name = '" + category.Name + "' WHERE ID = " + category.ID + "";
+            sqlCommand = new SqlCommand(commandString, sqlConnection);
+
+            sqlConnection.Open();
+
+            int isExecuted = 0;
+
+            isExecuted = sqlCommand.ExecuteNonQuery();
+
+            sqlConnection.Close();
+
+            return isExecuted;
         }
     }
 }

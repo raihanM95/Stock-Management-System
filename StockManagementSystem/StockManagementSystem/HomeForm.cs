@@ -114,7 +114,8 @@ namespace StockManagementSystem
         // Call Company Setup form
         private void CompanySetupToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            CompanySetupForm companySetup = new CompanySetupForm();
+            companySetup.Show();
         }
 
         // Call Item Setup form

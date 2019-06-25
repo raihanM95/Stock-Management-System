@@ -124,6 +124,7 @@
     <EmbeddedResource Include="StockInForm.resx">
       <DependentUpon>StockInForm.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Properties\DataSources\StockManagementSystem.BLL.StockManager.datasource" />
     <None Include="Properties\DataSources\StockManagementSystem.Models.Category.datasource" />
     <None Include="Properties\DataSources\StockManagementSystem.Models.Company.datasource" />
     <None Include="Properties\DataSources\StockManagementSystem.Models.Item.datasource" />

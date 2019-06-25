@@ -179,6 +179,7 @@ namespace StockManagementSystem.Repository
             int isExecuted = sqlCommand.ExecuteNonQuery();
 
             sqlConnection.Close();
+
             return isExecuted;
         }
 

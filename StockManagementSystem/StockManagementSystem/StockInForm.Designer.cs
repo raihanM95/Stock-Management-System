@@ -30,12 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.companyComboBox = new System.Windows.Forms.ComboBox();
-            this.companyBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.categoryComboBox = new System.Windows.Forms.ComboBox();
-            this.categoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.itemComboBox = new System.Windows.Forms.ComboBox();
-            this.itemBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.stockBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.reorderLevelTextBox = new System.Windows.Forms.TextBox();
             this.availableQuantityTextBox = new System.Windows.Forms.TextBox();
             this.stockInQuantityTextBox = new System.Windows.Forms.TextBox();
@@ -48,18 +44,17 @@
             this.label6 = new System.Windows.Forms.Label();
             this.displayStockInDataGridView = new System.Windows.Forms.DataGridView();
             this.SL = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.itemIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.itemNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.quantityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.messageLabel = new System.Windows.Forms.Label();
+            this.companyBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.categoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.itemBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.stockManagerBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.displayStockInDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.companyBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.stockBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.displayStockInDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stockManagerBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // companyComboBox
@@ -73,10 +68,6 @@
             this.companyComboBox.TabIndex = 0;
             this.companyComboBox.ValueMember = "ID";
             // 
-            // companyBindingSource
-            // 
-         //   this.companyBindingSource.DataSource = typeof(StockManagementSystem.Models.Company);
-            // 
             // categoryComboBox
             // 
             this.categoryComboBox.DataSource = this.categoryBindingSource;
@@ -89,10 +80,6 @@
             this.categoryComboBox.ValueMember = "ID";
             this.categoryComboBox.SelectedIndexChanged += new System.EventHandler(this.categoryComboBox_SelectedIndexChanged);
             // 
-            // categoryBindingSource
-            // 
-//            this.categoryBindingSource.DataSource = typeof(StockManagementSystem.Models.Category);
-            // 
             // itemComboBox
             // 
             this.itemComboBox.DataSource = this.itemBindingSource;
@@ -104,14 +91,6 @@
             this.itemComboBox.TabIndex = 2;
             this.itemComboBox.ValueMember = "ID";
             this.itemComboBox.SelectedIndexChanged += new System.EventHandler(this.itemComboBox_SelectedIndexChanged);
-            // 
-            // itemBindingSource
-            // 
-//            this.itemBindingSource.DataSource = typeof(StockManagementSystem.Models.Item);
-            // 
-            // stockBindingSource
-            // 
-//            this.stockBindingSource.DataSource = typeof(StockManagementSystem.Models.Stock);
             // 
             // reorderLevelTextBox
             // 
@@ -208,13 +187,8 @@
             this.displayStockInDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.displayStockInDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.SL,
-            this.iDDataGridViewTextBoxColumn,
-            this.itemIDDataGridViewTextBoxColumn,
-            this.itemNameDataGridViewTextBoxColumn,
-            this.dateDataGridViewTextBoxColumn,
-            this.quantityDataGridViewTextBoxColumn,
             this.Status});
-            this.displayStockInDataGridView.DataSource = this.stockBindingSource;
+            this.displayStockInDataGridView.DataSource = this.stockManagerBindingSource;
             this.displayStockInDataGridView.Location = new System.Drawing.Point(12, 405);
             this.displayStockInDataGridView.Name = "displayStockInDataGridView";
             this.displayStockInDataGridView.ReadOnly = true;
@@ -229,43 +203,6 @@
             this.SL.HeaderText = "SL";
             this.SL.Name = "SL";
             this.SL.ReadOnly = true;
-            // 
-            // iDDataGridViewTextBoxColumn
-            // 
-            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
-            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
-            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
-            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.iDDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // itemIDDataGridViewTextBoxColumn
-            // 
-            this.itemIDDataGridViewTextBoxColumn.DataPropertyName = "ItemID";
-            this.itemIDDataGridViewTextBoxColumn.HeaderText = "ItemID";
-            this.itemIDDataGridViewTextBoxColumn.Name = "itemIDDataGridViewTextBoxColumn";
-            this.itemIDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.itemIDDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // itemNameDataGridViewTextBoxColumn
-            // 
-            this.itemNameDataGridViewTextBoxColumn.DataPropertyName = "ItemName";
-            this.itemNameDataGridViewTextBoxColumn.HeaderText = "Item";
-            this.itemNameDataGridViewTextBoxColumn.Name = "itemNameDataGridViewTextBoxColumn";
-            this.itemNameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // dateDataGridViewTextBoxColumn
-            // 
-            this.dateDataGridViewTextBoxColumn.DataPropertyName = "Date";
-            this.dateDataGridViewTextBoxColumn.HeaderText = "Date";
-            this.dateDataGridViewTextBoxColumn.Name = "dateDataGridViewTextBoxColumn";
-            this.dateDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // quantityDataGridViewTextBoxColumn
-            // 
-            this.quantityDataGridViewTextBoxColumn.DataPropertyName = "Quantity";
-            this.quantityDataGridViewTextBoxColumn.HeaderText = "Quantity";
-            this.quantityDataGridViewTextBoxColumn.Name = "quantityDataGridViewTextBoxColumn";
-            this.quantityDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // Status
             // 
@@ -282,6 +219,22 @@
             this.messageLabel.Name = "messageLabel";
             this.messageLabel.Size = new System.Drawing.Size(0, 20);
             this.messageLabel.TabIndex = 14;
+            // 
+            // companyBindingSource
+            // 
+            this.companyBindingSource.DataSource = typeof(StockManagementSystem.Models.Company);
+            // 
+            // categoryBindingSource
+            // 
+            this.categoryBindingSource.DataSource = typeof(StockManagementSystem.Models.Category);
+            // 
+            // itemBindingSource
+            // 
+            this.itemBindingSource.DataSource = typeof(StockManagementSystem.Models.Item);
+            // 
+            // stockManagerBindingSource
+            // 
+            this.stockManagerBindingSource.DataSource = typeof(StockManagementSystem.BLL.StockManager);
             // 
             // StockInForm
             // 
@@ -309,11 +262,11 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Stock In";
             this.Load += new System.EventHandler(this.StockInForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.displayStockInDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.companyBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.stockBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.displayStockInDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stockManagerBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -335,10 +288,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DataGridView displayStockInDataGridView;
-        private System.Windows.Forms.BindingSource stockBindingSource;
-        private System.Windows.Forms.BindingSource companyBindingSource;
-        private System.Windows.Forms.BindingSource categoryBindingSource;
-        private System.Windows.Forms.BindingSource itemBindingSource;
         private System.Windows.Forms.Label messageLabel;
         private System.Windows.Forms.DataGridViewTextBoxColumn SL;
         private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
@@ -347,5 +296,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn quantityDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn Status;
+        private System.Windows.Forms.BindingSource companyBindingSource;
+        private System.Windows.Forms.BindingSource categoryBindingSource;
+        private System.Windows.Forms.BindingSource itemBindingSource;
+        private System.Windows.Forms.BindingSource stockManagerBindingSource;
     }
 }

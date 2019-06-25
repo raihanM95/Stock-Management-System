@@ -14,10 +14,6 @@ namespace StockManagementSystem.BLL
     {
         public CategoryRepository _categoryRepository = new CategoryRepository();
 
-
-
-
-
         public DataTable LoadCategoryDataGridView()
         {
             return _categoryRepository.LoadCategoryDataGridView();
@@ -26,22 +22,16 @@ namespace StockManagementSystem.BLL
         public bool ValidationCheck(Category category)
         {
             return _categoryRepository.ValidationCheck(category);
-
-        }
-
-        public int UpdateCategory(Category category)
-        {
-
-            return _categoryRepository.UpdateCategory(category);
-
         }
 
         public int InsertCategory(Category category)
         {
-
             return _categoryRepository.InsertCategory(category);
-
         }
 
+        public int UpdateCategory(Category category)
+        {
+            return _categoryRepository.UpdateCategory(category);
+        }
     }
 }
