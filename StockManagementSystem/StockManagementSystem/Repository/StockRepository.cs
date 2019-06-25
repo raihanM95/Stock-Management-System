@@ -186,7 +186,7 @@ namespace StockManagementSystem.Repository
         public DataTable DisplayStock()
         {
             sqlConnection = new SqlConnection(connectionString);
-            commandString = @"SELECT * FROM StocksView";
+            commandString = @"SELECT * FROM StocksView ORDER BY Date DESC";
             sqlCommand = new SqlCommand(commandString, sqlConnection);
 
             if (sqlConnection.State == ConnectionState.Closed)
