@@ -121,7 +121,8 @@ namespace StockManagementSystem
         // Call Item Setup form
         private void ItemSetupToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            ItemSetupForm itemSetup = new ItemSetupForm();
+            itemSetup.Show();
         }
 
         // Call Search & View Items Summary form
