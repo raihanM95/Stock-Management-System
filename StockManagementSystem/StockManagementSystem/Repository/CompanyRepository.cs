@@ -11,23 +11,28 @@ namespace StockManagementSystem.Repository
 {
     public class CompanyRepository
     {
-
-        string connectionString = @"Server=DESKTOP-ON380RK\SQLEXPRESS; Database=StockManagementSystemDB; Integrated Security=True";
+        string connectionString;
         SqlConnection sqlConnection;
-
         private string commandString;
-        SqlCommand sqlCommand;
+        private SqlCommand sqlCommand;
+        SqlDataAdapter sqlDataAdapter;
+        DataTable dataTable;
+
+        public CompanyRepository()
+        {
+            connectionString = @"Server=DESKTOP-ON380RK\SQLEXPRESS; Database=StockManagementSystemDB; Integrated Security=True";
+            sqlConnection = new SqlConnection(connectionString);
+        }
 
         public DataTable LoadCompanyDataGridView()
         {
-            sqlConnection = new SqlConnection(connectionString);
             commandString = @"SELECT * FROM Companys";
             sqlCommand = new SqlCommand(commandString, sqlConnection);
 
             sqlConnection.Open();
 
-            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
-            DataTable dataTable = new DataTable();
+            sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+            dataTable = new DataTable();
             sqlDataAdapter.Fill(dataTable);
 
             sqlConnection.Close();
@@ -37,13 +42,13 @@ namespace StockManagementSystem.Repository
 
         public int InsertCompany(Company company)
         {
-            sqlConnection = new SqlConnection(connectionString);
             commandString = @"INSERT INTO Companys (Name) VALUES ('" + company.Name + "')";
             sqlCommand = new SqlCommand(commandString, sqlConnection);
 
             sqlConnection.Open();
 
             int isExecuted = 0;
+
             isExecuted = sqlCommand.ExecuteNonQuery();
 
             sqlConnection.Close();
@@ -53,7 +58,6 @@ namespace StockManagementSystem.Repository
 
         public int UpdateCompany(Company company)
         {
-            sqlConnection = new SqlConnection(connectionString);
             commandString = "UPDATE Companys SET Name = '" + company.Name + "' WHERE ID = " + company.ID + "";
             sqlCommand = new SqlCommand(commandString, sqlConnection);
             
@@ -70,15 +74,14 @@ namespace StockManagementSystem.Repository
 
         public bool ValidationCheck(Company company)
         {
-            sqlConnection = new SqlConnection(connectionString);
             commandString = @"SELECT * FROM Companys WHERE Name = '" + company.Name + "'";
             sqlCommand = new SqlCommand(commandString, sqlConnection);
 
             sqlConnection.Open();
 
-            SqlDataAdapter dataAdapter = new SqlDataAdapter(sqlCommand);
-            DataTable dataTable = new DataTable();
-            dataAdapter.Fill(dataTable);
+            sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+            dataTable = new DataTable();
+            sqlDataAdapter.Fill(dataTable);
 
             bool isExist = false;
             if (dataTable.Rows.Count > 0)

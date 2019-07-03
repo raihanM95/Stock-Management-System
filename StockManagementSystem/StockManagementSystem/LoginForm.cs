@@ -13,7 +13,7 @@ namespace StockManagementSystem
 {
     public partial class LoginForm : Form
     {
-        UserManager _userManager = new UserManager();
+        UserManager _userManager;
         private User user;
 
         public string Message = "";
@@ -21,6 +21,8 @@ namespace StockManagementSystem
         public LoginForm()
         {
             InitializeComponent();
+
+            _userManager = new UserManager();
             user = new User();
         }
 
@@ -63,6 +65,7 @@ namespace StockManagementSystem
                 {
                     // Login error message
                     loginMessageLabel.Text = "Username or password doesn't match";
+                    passwordTextBox.Clear();
                 }
             }
             catch (Exception ex)

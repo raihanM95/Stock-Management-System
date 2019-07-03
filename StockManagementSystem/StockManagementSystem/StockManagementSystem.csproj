@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="BLL\CategoryManager.cs" />
     <Compile Include="BLL\CompanyManager.cs" />
+    <Compile Include="BLL\ItemManager.cs" />
     <Compile Include="BLL\StockManager.cs" />
     <Compile Include="BLL\UserManager.cs" />
     <Compile Include="CategorySetupForm.cs">
@@ -88,6 +89,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\CategoryRepository.cs" />
     <Compile Include="Repository\CompanyRepository.cs" />
+    <Compile Include="Repository\ItemRepository.cs" />
     <Compile Include="Repository\StockRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />
     <Compile Include="SearchAndViewForm.cs">

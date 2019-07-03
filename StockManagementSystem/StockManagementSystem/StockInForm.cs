@@ -13,14 +13,14 @@ namespace StockManagementSystem
 {
     public partial class StockInForm : Form
     {
-        StockManager _stockManager = new StockManager();
-
+        StockManager _stockManager;
         private Stock stock;
 
         public StockInForm()
         {
             InitializeComponent();
 
+            _stockManager = new StockManager();
             stock = new Stock();
 
             DisplayStock();

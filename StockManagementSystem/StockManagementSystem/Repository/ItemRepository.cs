@@ -1,15 +1,15 @@
-﻿using System;
+﻿using StockManagementSystem.Models;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using StockManagementSystem.Models;
 
 namespace StockManagementSystem.Repository
 {
-    public class CategoryRepository
+    public class ItemRepository
     {
         string connectionString;
         SqlConnection sqlConnection;
@@ -18,17 +18,17 @@ namespace StockManagementSystem.Repository
         SqlDataAdapter sqlDataAdapter;
         DataTable dataTable;
 
-        public CategoryRepository()
+        public ItemRepository()
         {
             connectionString = @"Server=DESKTOP-ON380RK\SQLEXPRESS; Database=StockManagementSystemDB; Integrated Security=True";
             sqlConnection = new SqlConnection(connectionString);
         }
 
-        public DataTable LoadCategoryDataGridView()
+        public DataTable LoadCategory()
         {
             commandString = @"SELECT * FROM Categorys";
             sqlCommand = new SqlCommand(commandString, sqlConnection);
-            
+
             sqlConnection.Open();
 
             sqlDataAdapter = new SqlDataAdapter(sqlCommand);
@@ -40,9 +40,9 @@ namespace StockManagementSystem.Repository
             return dataTable;
         }
 
-        public bool ValidationCheck(Category category)
+        public DataTable LoadCompany()
         {
-            commandString = @"SELECT * FROM Categorys WHERE Name = '" + category.Name + "'";
+            commandString = @"SELECT * FROM Companys";
             sqlCommand = new SqlCommand(commandString, sqlConnection);
 
             sqlConnection.Open();
@@ -51,47 +51,48 @@ namespace StockManagementSystem.Repository
             dataTable = new DataTable();
             sqlDataAdapter.Fill(dataTable);
 
-            bool isExist = false;
-            if (dataTable.Rows.Count > 0)
+            sqlConnection.Close();
+
+            return dataTable;
+        }
+
+        public int ItemInsert(Item item)
+        {
+            int isExecuted = 0;
+
+            commandString = @"INSERT INTO Items VALUES ('" + item.ItemName + "', " + item.CategoryID + " ," + item.CompanyID + ", " + item.ReorderLevel + ")";
+            sqlCommand = new SqlCommand(commandString, sqlConnection);
+
+            sqlConnection.Open();
+
+            isExecuted = sqlCommand.ExecuteNonQuery();
+
+            sqlConnection.Close();
+
+            return isExecuted;
+        }
+
+        public bool IsDuplicate(Item item)
+        {
+            bool isDuplicate = false;
+
+            commandString = @"SELECT ID FROM Items WHERE ItemName = '" + item.ItemName + "' AND CategoryID = " + item.CategoryID + " AND CompanyID = " + item.CompanyID;
+            sqlCommand = new SqlCommand(commandString, sqlConnection);
+
+            sqlConnection.Open();
+
+            sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+            dataTable = new DataTable();
+            sqlDataAdapter.Fill(dataTable);
+
+            if (dataTable != null && dataTable.Rows.Count > 0)
             {
-                isExist = true;
+                isDuplicate = true;
             }
 
             sqlConnection.Close();
 
-            return isExist;
-        }
-
-        public int InsertCategory(Category category)
-        {
-            commandString = @"INSERT INTO Categorys (Name) VALUES ('" + category.Name + "')";
-            sqlCommand = new SqlCommand(commandString, sqlConnection);
-
-            sqlConnection.Open();
-
-            int isExecuted = 0;
-
-            isExecuted = sqlCommand.ExecuteNonQuery();
-
-            sqlConnection.Close();
-
-            return isExecuted;
-        }
-
-        public int UpdateCategory(Category category)
-        {
-            commandString = "UPDATE Categorys SET Name = '" + category.Name + "' WHERE ID = " + category.ID + "";
-            sqlCommand = new SqlCommand(commandString, sqlConnection);
-
-            sqlConnection.Open();
-
-            int isExecuted = 0;
-
-            isExecuted = sqlCommand.ExecuteNonQuery();
-
-            sqlConnection.Close();
-
-            return isExecuted;
+            return isDuplicate;
         }
     }
 }

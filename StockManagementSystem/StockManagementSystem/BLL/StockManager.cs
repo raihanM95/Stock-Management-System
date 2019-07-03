@@ -11,7 +11,11 @@ namespace StockManagementSystem.BLL
 {
     public class StockManager
     {
-        StockRepository _stockRepository = new StockRepository();
+        StockRepository _stockRepository;
+        public StockManager()
+        {
+            _stockRepository = new StockRepository();
+        }
 
         public DataTable LoadCompany()
         {

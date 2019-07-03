@@ -14,7 +14,11 @@ namespace StockManagementSystem.BLL
 {
     class CompanyManager
     {
-        CompanyRepository _companyRepository = new CompanyRepository();
+        CompanyRepository _companyRepository;
+        public CompanyManager()
+        {
+            _companyRepository = new CompanyRepository();
+        }
 
         public DataTable LoadCompanyDataGridView()
         {

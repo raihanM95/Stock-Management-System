@@ -46,8 +46,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.displayStockInDataGridView = new System.Windows.Forms.DataGridView();
-            this.stockBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.messageLabel = new System.Windows.Forms.Label();
             this.SL = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,6 +53,8 @@
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stockBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.messageLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.companyBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemBindingSource)).BeginInit();
@@ -148,7 +148,7 @@
             this.label1.Location = new System.Drawing.Point(245, 71);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(76, 20);
-            this.label1.TabIndex = 7;
+            this.label1.TabIndex = 0;
             this.label1.Text = "Company";
             // 
             // label2
@@ -157,7 +157,7 @@
             this.label2.Location = new System.Drawing.Point(248, 117);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(73, 20);
-            this.label2.TabIndex = 8;
+            this.label2.TabIndex = 0;
             this.label2.Text = "Category";
             // 
             // label3
@@ -166,7 +166,7 @@
             this.label3.Location = new System.Drawing.Point(280, 161);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(41, 20);
-            this.label3.TabIndex = 9;
+            this.label3.TabIndex = 0;
             this.label3.Text = "Item";
             // 
             // label4
@@ -175,7 +175,7 @@
             this.label4.Location = new System.Drawing.Point(213, 206);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(108, 20);
-            this.label4.TabIndex = 10;
+            this.label4.TabIndex = 0;
             this.label4.Text = "Reorder Level";
             // 
             // label5
@@ -184,7 +184,7 @@
             this.label5.Location = new System.Drawing.Point(186, 248);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(135, 20);
-            this.label5.TabIndex = 11;
+            this.label5.TabIndex = 0;
             this.label5.Text = "Available Quantity";
             // 
             // label6
@@ -193,7 +193,7 @@
             this.label6.Location = new System.Drawing.Point(190, 291);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(131, 20);
-            this.label6.TabIndex = 12;
+            this.label6.TabIndex = 0;
             this.label6.Text = "Stock In Quantity";
             // 
             // displayStockInDataGridView
@@ -216,21 +216,9 @@
             this.displayStockInDataGridView.ReadOnly = true;
             this.displayStockInDataGridView.RowTemplate.Height = 28;
             this.displayStockInDataGridView.Size = new System.Drawing.Size(778, 196);
-            this.displayStockInDataGridView.TabIndex = 13;
+            this.displayStockInDataGridView.TabIndex = 7;
             this.displayStockInDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.displayStockInDataGridView_CellContentClick);
             this.displayStockInDataGridView.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.displayStockInDataGridView_RowPostPaint);
-            // 
-            // stockBindingSource
-            // 
-            this.stockBindingSource.DataSource = typeof(StockManagementSystem.Models.Stock);
-            // 
-            // messageLabel
-            // 
-            this.messageLabel.AutoSize = true;
-            this.messageLabel.Location = new System.Drawing.Point(248, 342);
-            this.messageLabel.Name = "messageLabel";
-            this.messageLabel.Size = new System.Drawing.Size(0, 20);
-            this.messageLabel.TabIndex = 14;
             // 
             // SL
             // 
@@ -282,6 +270,18 @@
             this.Status.Name = "Status";
             this.Status.ReadOnly = true;
             this.Status.Visible = false;
+            // 
+            // stockBindingSource
+            // 
+            this.stockBindingSource.DataSource = typeof(StockManagementSystem.Models.Stock);
+            // 
+            // messageLabel
+            // 
+            this.messageLabel.AutoSize = true;
+            this.messageLabel.Location = new System.Drawing.Point(248, 342);
+            this.messageLabel.Name = "messageLabel";
+            this.messageLabel.Size = new System.Drawing.Size(0, 20);
+            this.messageLabel.TabIndex = 0;
             // 
             // StockInForm
             // 

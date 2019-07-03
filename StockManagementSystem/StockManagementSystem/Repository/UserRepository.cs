@@ -10,27 +10,34 @@ namespace StockManagementSystem.Repository
 {
     public class UserRepository
     {
-        public string connectionString = @"Server=DESKTOP-ON380RK\SQLEXPRESS; Database=StockManagementSystemDB; Integrated Security=True";
+        string connectionString;
+        SqlConnection sqlConnection;
+        private string commandString;
+        private SqlCommand sqlCommand;
+        SqlDataAdapter sqlDataAdapter;
+        DataTable dataTable;
+
+        public UserRepository()
+        {
+            connectionString = @"Server=DESKTOP-ON380RK\SQLEXPRESS; Database=StockManagementSystemDB; Integrated Security=True";
+            sqlConnection = new SqlConnection(connectionString);
+        }
 
         public int LogIn(User user)
         {
             int count = 0;
 
-            SqlConnection sqlConnection = new SqlConnection();
-            sqlConnection.ConnectionString = connectionString;
-
-            SqlCommand sqlCommand = new SqlCommand();
-            string commandString = "SELECT * FROM [dbo].[User] WHERE UserName = '" + user.Username + "' and Password = '" + user.Password + "'";
-            sqlCommand.CommandText = commandString;
-            sqlCommand.Connection = sqlConnection;
+            commandString = "SELECT * FROM [dbo].[User] WHERE UserName = '" + user.Username + "' and Password = '" + user.Password + "'";
+            sqlCommand = new SqlCommand(commandString, sqlConnection);
 
             sqlConnection.Open();
 
             sqlCommand.ExecuteNonQuery();
 
-            DataTable dataTable = new DataTable();
-            SqlDataAdapter dataAdapter = new SqlDataAdapter(sqlCommand);
-            dataAdapter.Fill(dataTable);
+            dataTable = new DataTable();
+            sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+            sqlDataAdapter.Fill(dataTable);
+
             count = Convert.ToInt32(dataTable.Rows.Count.ToString());
 
             sqlConnection.Close();

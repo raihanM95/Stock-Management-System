@@ -12,7 +12,11 @@ namespace StockManagementSystem.BLL
 {
     public class CategoryManager
     {
-        public CategoryRepository _categoryRepository = new CategoryRepository();
+        CategoryRepository _categoryRepository;
+        public CategoryManager()
+        {
+            _categoryRepository = new CategoryRepository();
+        }
 
         public DataTable LoadCategoryDataGridView()
         {

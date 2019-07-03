@@ -14,13 +14,14 @@ namespace StockManagementSystem
 {
     public partial class CategorySetupForm : Form
     {
-        public Category category;
-        public CategoryManager _categoryManager = new CategoryManager();
+        CategoryManager _categoryManager;
+        Category category;
 
         public CategorySetupForm()
         {
             InitializeComponent();
-            
+
+            _categoryManager = new CategoryManager();
             category = new Category();
         }
 

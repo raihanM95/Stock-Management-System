@@ -9,7 +9,11 @@ namespace StockManagementSystem.BLL
 {
     public class UserManager
     {
-        UserRepository _userRepository = new UserRepository();
+        UserRepository _userRepository;
+        public UserManager()
+        {
+            _userRepository = new UserRepository();
+        }
 
         public int LogIn(User user)
         {

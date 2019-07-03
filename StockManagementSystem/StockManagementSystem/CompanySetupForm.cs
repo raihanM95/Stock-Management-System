@@ -13,13 +13,14 @@ namespace StockManagementSystem
 {
     public partial class CompanySetupForm : Form
     {
-        public Company company ;
-        CompanyManager _companyManager = new CompanyManager();
+        CompanyManager _companyManager;
+        Company company ;
 
         public CompanySetupForm()
         {
             InitializeComponent();
-            
+
+            _companyManager = new CompanyManager();
             company = new Company();
         }
 
