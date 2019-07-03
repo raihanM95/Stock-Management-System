@@ -49,6 +49,7 @@
     <Compile Include="BLL\CategoryManager.cs" />
     <Compile Include="BLL\CompanyManager.cs" />
     <Compile Include="BLL\ItemManager.cs" />
+    <Compile Include="BLL\SearchAndViewManager.cs" />
     <Compile Include="BLL\StockManager.cs" />
     <Compile Include="BLL\UserManager.cs" />
     <Compile Include="CategorySetupForm.cs">
@@ -84,6 +85,8 @@
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\Item.cs" />
+    <Compile Include="Models\SearchAndViewModel.cs" />
+    <Compile Include="Repository\SearchAndViewRepository.cs" />
     <Compile Include="Models\Stock.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -95,7 +98,7 @@
     <Compile Include="SearchAndViewForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SearchAndViewForm.Designer.cs">
+    <Compile Include="SearchAndViewForm.designer.cs">
       <DependentUpon>SearchAndViewForm.cs</DependentUpon>
     </Compile>
     <Compile Include="StockInForm.cs">
