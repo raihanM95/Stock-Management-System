@@ -141,7 +141,8 @@ namespace StockManagementSystem
         // Call Stock Out form
         private void StockOutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            StockOutForm stockOut = new StockOutForm();
+            stockOut.Show();
         }
 
         // Call View Between Two Dates Report form

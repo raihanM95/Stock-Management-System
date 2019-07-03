@@ -15,5 +15,6 @@ namespace StockManagementSystem.Models
         public string Status { get; set; }
 
         public string ItemName { get; set; }
+        public string Company { get; set; }
     }
 }
