@@ -57,9 +57,9 @@ namespace StockManagementSystem.BLL
             return _stockRepository.UpdateStock(stock);
         }
 
-        public DataTable DisplayStock()
+        public DataTable DisplayStock(Stock stock)
         {
-            return _stockRepository.DisplayStock();
+            return _stockRepository.DisplayStock(stock);
         }
     }
 }

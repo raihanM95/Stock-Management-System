@@ -23,7 +23,7 @@ namespace StockManagementSystem
             _stockManager = new StockManager();
             stock = new Stock();
 
-            DisplayStock();
+            //DisplayStock();
         }
 
         private void StockInForm_Load(object sender, EventArgs e)
@@ -33,12 +33,21 @@ namespace StockManagementSystem
 
             categoryComboBox.DataSource = _stockManager.LoadCategory();
             categoryComboBox.Text = "-Select-";
+
+            reorderLevelTextBox.Text = "<View>";
+            availableQuantityTextBox.Text = "<View>";
+            //displayStockInDataGridView.Rows.Clear();
+            displayStockInDataGridView.DataSource = null;
         }
 
         private void categoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             itemComboBox.DataSource = _stockManager.LoadItem(Convert.ToInt32(companyComboBox.SelectedValue), Convert.ToInt32(categoryComboBox.SelectedValue));
             itemComboBox.Text = "-Select-";
+
+            reorderLevelTextBox.Text = "<View>";
+            availableQuantityTextBox.Text = "<View>";
+            displayStockInDataGridView.DataSource = null;
         }
 
         private void itemComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -46,6 +55,7 @@ namespace StockManagementSystem
             LoadReorder();
             LoadQuantity();
             LoadItemID();
+            DisplayStock();
         }
         
         private void LoadReorder()
@@ -189,7 +199,8 @@ namespace StockManagementSystem
         {
             try
             {
-                displayStockInDataGridView.DataSource = _stockManager.DisplayStock();
+                stock.ItemName = itemComboBox.Text;
+                displayStockInDataGridView.DataSource = _stockManager.DisplayStock(stock);
 
                 DataGridViewButtonColumn editButton = new DataGridViewButtonColumn();
                 editButton.FlatStyle = FlatStyle.Popup;

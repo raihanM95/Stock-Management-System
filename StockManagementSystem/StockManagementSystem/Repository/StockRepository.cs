@@ -187,9 +187,9 @@ namespace StockManagementSystem.Repository
             return isExecuted;
         }
 
-        public DataTable DisplayStock()
+        public DataTable DisplayStock(Stock stock)
         {
-            commandString = @"SELECT * FROM StocksView ORDER BY Date DESC";
+            commandString = @"SELECT * FROM StocksView WHERE ItemName = '" + stock.ItemName + "' ORDER BY Date DESC";
             sqlCommand = new SqlCommand(commandString, sqlConnection);
 
             if (sqlConnection.State == ConnectionState.Closed)
