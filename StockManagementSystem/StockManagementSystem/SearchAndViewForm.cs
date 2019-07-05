@@ -1,55 +1,55 @@
-﻿using System;
+﻿using StockManagementSystem.BLL;
+using StockManagementSystem.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Data.SqlClient;
-
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using StockManagementSystem.Models;
-using StockManagementSystem.BLL;
 
 namespace StockManagementSystem
 {
     public partial class SearchAndViewForm : Form
     {
-        SearchAndViewManager _searchAndViewManager = new SearchAndViewManager();
-        SearchAndViewModel _searchAndViewModel = new SearchAndViewModel();
+        ItemManager _itemManager;
+        Item item;
         DataTable dataTable;
+
         public SearchAndViewForm()
         {
             InitializeComponent();
+
+            _itemManager = new ItemManager();
+            item = new Item();
         }
 
         private void SearchButton_Click(object sender, EventArgs e)
         {
-            _searchAndViewModel.Category = categoryComboBox.SelectedText;
-            _searchAndViewModel.Company = companyComboBox.SelectedText;
+            item.Category = categoryComboBox.Text;
+            item.Company = companyComboBox.Text;
 
-            dataTable = _searchAndViewManager.Search(_searchAndViewModel);
+            dataTable = _itemManager.Search(item);
             if (dataTable != null && dataTable.Rows.Count > 0)
             {
                 searchAndViewDataGridView.DataSource = dataTable;
             }
             else
             {
-                MessageBox.Show("Sorry! Not Found Any Record");
+                messageLabel.Text = "Sorry! No data found";
                 searchAndViewDataGridView.DataSource = null;
             }
-
         }
 
         private void SearchAndViewForm_Load(object sender, EventArgs e)
         {
-            companyComboBox.DataSource = _searchAndViewManager.LoadCompany();
-            companyComboBox.Text = "<Select>";
+            companyComboBox.DataSource = _itemManager.LoadCompany();
+            companyComboBox.Text = "-Select-";
 
-            categoryComboBox.DataSource = _searchAndViewManager.LoadCategory();
-            categoryComboBox.Text = "<Select>";
-
+            categoryComboBox.DataSource = _itemManager.LoadCategory();
+            categoryComboBox.Text = "-Select-";
         }
 
         private void searchAndViewDataGridView_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)

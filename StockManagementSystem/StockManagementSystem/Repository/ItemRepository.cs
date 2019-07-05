@@ -94,5 +94,55 @@ namespace StockManagementSystem.Repository
 
             return isDuplicate;
         }
+
+        public DataTable Search(Item item)
+        {
+            commandString = "";
+            if (String.IsNullOrEmpty(item.Category))
+            {
+                commandString = @"SELECT I.ItemName, Com.Name As Company, Cat.Name As Category, S.Quantity, I.ReorderLevel
+                                  FROM (((Items As I
+                                  LEFT OUTER JOIN Companys As Com ON I.CompanyID = Com.ID)
+                                  LEFT OUTER JOIN Categorys As Cat ON I.CategoryID = Cat.ID)
+                                  LEFT OUTER JOIN Stocks As S ON I.ID = S.ItemID)
+                                  WHERE Com.Name = '" + item.Company + "'";
+            }
+            if (String.IsNullOrEmpty(item.Company))
+            {
+                commandString = @"SELECT I.ItemName, Com.Name As Company, Cat.Name As Category, S.Quantity, I.ReorderLevel
+                                  FROM (((Items As I
+                                  LEFT OUTER JOIN Companys As Com ON I.CompanyID = Com.ID)
+                                  LEFT OUTER JOIN Categorys As Cat ON I.CategoryID = Cat.ID)
+                                  LEFT OUTER JOIN Stocks As S ON I.ID = S.ItemID)
+                                  WHERE Cat.Name = '" + item.Category + "'";
+            }
+            if (!String.IsNullOrEmpty(item.Category) && !String.IsNullOrEmpty(item.Company))
+            {
+                commandString = @"SELECT I.ItemName, Com.Name As Company, Cat.Name As Category, S.Quantity, I.ReorderLevel
+                                  FROM (((Items As I
+                                  LEFT OUTER JOIN Companys As Com ON I.CompanyID = Com.ID)
+                                  LEFT OUTER JOIN Categorys As Cat ON I.CategoryID = Cat.ID)
+                                  LEFT OUTER JOIN Stocks As S ON I.ID = S.ItemID)
+                                  WHERE Cat.Name = '" + item.Category + "' AND Com.Name = '" + item.Company + "'";
+            }
+
+            if (!String.IsNullOrEmpty(commandString))
+            {
+                sqlCommand = new SqlCommand(commandString, sqlConnection);
+
+                sqlConnection.Open();
+
+                sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+                dataTable = new DataTable();
+                sqlDataAdapter.Fill(dataTable);
+
+                sqlConnection.Close();
+                return dataTable;
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }

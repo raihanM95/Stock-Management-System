@@ -36,5 +36,10 @@ namespace StockManagementSystem.BLL
         {
             return _itemRepository.IsDuplicate(item);
         }
+
+        public DataTable Search(Item item)
+        {
+            return _itemRepository.Search(item);
+        }
     }
 }

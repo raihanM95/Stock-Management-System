@@ -38,6 +38,12 @@ namespace StockManagementSystem
         {
             try
             {
+                if (String.IsNullOrEmpty(reorderLevelTextBox.Text))
+                {
+                    messageLabel.Text = "Enter Reorder Level";
+                    return;
+                }
+
                 item.CategoryID = Convert.ToInt32(categoryComboBox.SelectedValue);
                 item.CompanyID = Convert.ToInt32(companyComboBox.SelectedValue);
                 item.ItemName = itemNameTextBox.Text;
@@ -72,15 +78,21 @@ namespace StockManagementSystem
         {
             messageLabel.Text = "";
 
+            if (categoryComboBox.Text.Equals("-Select-"))
+            {
+                messageLabel.Text = "Select category";
+                return false;
+            }
+
             if (companyComboBox.Text.Equals("-Select-"))
             {
                 messageLabel.Text = "Select company";
                 return false;
             }
 
-            if (categoryComboBox.Text.Equals("-Select-"))
+            if (String.IsNullOrEmpty(itemNameTextBox.Text))
             {
-                messageLabel.Text = "Select category";
+                messageLabel.Text = "Enter Item";
                 return false;
             }
 
@@ -92,7 +104,7 @@ namespace StockManagementSystem
 
             if (String.IsNullOrEmpty(reorderLevelTextBox.Text))
             {
-                messageLabel.Text = "Enter Reorder Level ";
+                messageLabel.Text = "Enter Reorder Level";
                 return false;
             }
 
