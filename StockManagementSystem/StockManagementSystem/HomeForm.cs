@@ -128,7 +128,8 @@ namespace StockManagementSystem
         // Call Search & View Items Summary form
         private void ViewItemsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            SearchAndViewForm searchAndView = new SearchAndViewForm();
+            searchAndView.Show();
         }
 
         // Call Stock In form
@@ -149,6 +150,17 @@ namespace StockManagementSystem
         private void ViewReportToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        // Timer add
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            clock.Text = DateTime.Now.ToString("T");
+        }
+
+        private void HomeForm_Load(object sender, EventArgs e)
+        {
+            Timer.Start();
         }
     }
 }
