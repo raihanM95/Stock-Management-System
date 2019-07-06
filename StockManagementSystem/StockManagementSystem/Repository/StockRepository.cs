@@ -191,7 +191,7 @@ namespace StockManagementSystem.Repository
         {
             int isExecuted = 0;
 
-            string query = "UPDATE Items SET AvailableQuantity = '" + item.AvailableQuantity + "' WHERE ItemName = '" + item.ItemName + "'";
+            string query = "UPDATE Items SET AvailableQuantity = '" + item.AvailableQuantity + "' WHERE ID = '" + item.ID + "'";
             sqlCommand = new SqlCommand(query, sqlConnection);
 
             if (sqlConnection.State == ConnectionState.Closed)
@@ -223,6 +223,38 @@ namespace StockManagementSystem.Repository
             sqlConnection.Close();
 
             return dataTable;
+        }
+
+        public DataTable GetQuantity(Item item)
+        {
+            commandString = @"SELECT * FROM Items WHERE ID = " + item.ID + "";
+            sqlCommand = new SqlCommand(commandString, sqlConnection);
+
+            sqlConnection.Open();
+
+            sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+            dataTable = new DataTable();
+            sqlDataAdapter.Fill(dataTable);
+
+            sqlConnection.Close();
+
+            return dataTable;
+        }
+
+        public int StockOut(Stock stock)
+        {
+            int isExecuted = 0;
+
+            commandString = "INSERT INTO Stocks (ItemID, Quantity, Date, Status) VALUES (" + stock.ItemID + ", " + stock.Quantity + ", '" + stock.Date + "', '" + stock.Status + "')";
+            sqlCommand = new SqlCommand(commandString, sqlConnection);
+
+            sqlConnection.Open();
+
+            isExecuted = sqlCommand.ExecuteNonQuery();
+
+            sqlConnection.Close();
+
+            return isExecuted;
         }
     }
 }

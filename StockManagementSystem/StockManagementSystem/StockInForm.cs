@@ -90,6 +90,7 @@ namespace StockManagementSystem
                         int stockInQuantity = Convert.ToInt32(stockInQuantityTextBox.Text);
                         stock.Quantity = stockInQuantity;
                         item.AvailableQuantity = availableQuantity + stockInQuantity;
+                        item.ID = _stockManager.LoadItemID(stock);
                         stock.Date = DateTime.Now;
                         stock.Status = "Stock In";
 
@@ -130,6 +131,7 @@ namespace StockManagementSystem
                     int stockInQuantity = Convert.ToInt32(stockInQuantityTextBox.Text);
                     stock.Quantity = stockInQuantity;
                     item.AvailableQuantity = availableQuantity + stockInQuantity;
+                    item.ID = _stockManager.LoadItemID(stock);
 
                     try
                     {
