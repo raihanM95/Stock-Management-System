@@ -109,7 +109,7 @@ namespace StockManagementSystem.Repository
 
         public string LoadQuantity(Stock stock)
         {
-            commandString = @"SELECT Stocks.Quantity FROM Stocks LEFT JOIN Items ON Stocks.ItemID = Items.ID WHERE ItemName = '" + stock.ItemName + "'";
+            commandString = @"SELECT AvailableQuantity FROM Items WHERE ItemName = '" + stock.ItemName + "'";
             sqlCommand = new SqlCommand(commandString, sqlConnection);
 
             if (sqlConnection.State == ConnectionState.Closed)
@@ -120,7 +120,7 @@ namespace StockManagementSystem.Repository
             reader = sqlCommand.ExecuteReader();
             while (reader.Read())
             {
-                availableQuantity = (reader["Quantity"]).ToString();
+                availableQuantity = (reader["AvailableQuantity"]).ToString();
             }
 
             sqlConnection.Close();
@@ -173,6 +173,25 @@ namespace StockManagementSystem.Repository
             int isExecuted = 0;
 
             string query = "UPDATE Stocks SET Quantity = '" + stock.Quantity + "' WHERE ID = '" + stock.ID + "'";
+            sqlCommand = new SqlCommand(query, sqlConnection);
+
+            if (sqlConnection.State == ConnectionState.Closed)
+            {
+                sqlConnection.Open();
+            }
+
+            isExecuted = sqlCommand.ExecuteNonQuery();
+
+            sqlConnection.Close();
+
+            return isExecuted;
+        }
+
+        public int InsertAvailableQuantity(Item item)
+        {
+            int isExecuted = 0;
+
+            string query = "UPDATE Items SET AvailableQuantity = '" + item.AvailableQuantity + "' WHERE ItemName = '" + item.ItemName + "'";
             sqlCommand = new SqlCommand(query, sqlConnection);
 
             if (sqlConnection.State == ConnectionState.Closed)

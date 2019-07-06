@@ -60,7 +60,7 @@ namespace StockManagementSystem.Repository
         {
             int isExecuted = 0;
 
-            commandString = @"INSERT INTO Items VALUES ('" + item.ItemName + "', " + item.CategoryID + " ," + item.CompanyID + ", " + item.ReorderLevel + ")";
+            commandString = @"INSERT INTO Items VALUES ('" + item.ItemName + "', " + item.CategoryID + " ," + item.CompanyID + ", " + item.ReorderLevel + ", 0)";
             sqlCommand = new SqlCommand(commandString, sqlConnection);
 
             sqlConnection.Open();
@@ -100,29 +100,26 @@ namespace StockManagementSystem.Repository
             commandString = "";
             if (String.IsNullOrEmpty(item.Category))
             {
-                commandString = @"SELECT I.ItemName, Com.Name As Company, Cat.Name As Category, S.Quantity, I.ReorderLevel
-                                  FROM (((Items As I
+                commandString = @"SELECT I.ItemName, I.ReorderLevel, I.AvailableQuantity, Com.Name As Company, Cat.Name As Category
+                                  FROM ((Items As I
                                   LEFT OUTER JOIN Companys As Com ON I.CompanyID = Com.ID)
                                   LEFT OUTER JOIN Categorys As Cat ON I.CategoryID = Cat.ID)
-                                  LEFT OUTER JOIN Stocks As S ON I.ID = S.ItemID)
                                   WHERE Com.Name = '" + item.Company + "'";
             }
             if (String.IsNullOrEmpty(item.Company))
             {
-                commandString = @"SELECT I.ItemName, Com.Name As Company, Cat.Name As Category, S.Quantity, I.ReorderLevel
-                                  FROM (((Items As I
+                commandString = @"SELECT I.ItemName, I.ReorderLevel, I.AvailableQuantity, Com.Name As Company, Cat.Name As Category
+                                  FROM ((Items As I
                                   LEFT OUTER JOIN Companys As Com ON I.CompanyID = Com.ID)
                                   LEFT OUTER JOIN Categorys As Cat ON I.CategoryID = Cat.ID)
-                                  LEFT OUTER JOIN Stocks As S ON I.ID = S.ItemID)
                                   WHERE Cat.Name = '" + item.Category + "'";
             }
             if (!String.IsNullOrEmpty(item.Category) && !String.IsNullOrEmpty(item.Company))
             {
-                commandString = @"SELECT I.ItemName, Com.Name As Company, Cat.Name As Category, S.Quantity, I.ReorderLevel
-                                  FROM (((Items As I
+                commandString = @"SELECT I.ItemName, I.ReorderLevel, I.AvailableQuantity, Com.Name As Company, Cat.Name As Category
+                                  FROM ((Items As I
                                   LEFT OUTER JOIN Companys As Com ON I.CompanyID = Com.ID)
                                   LEFT OUTER JOIN Categorys As Cat ON I.CategoryID = Cat.ID)
-                                  LEFT OUTER JOIN Stocks As S ON I.ID = S.ItemID)
                                   WHERE Cat.Name = '" + item.Category + "' AND Com.Name = '" + item.Company + "'";
             }
 

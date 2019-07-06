@@ -15,6 +15,7 @@ namespace StockManagementSystem
     {
         StockManager _stockManager;
         private Stock stock;
+        private Item item;
 
         public StockInForm()
         {
@@ -22,6 +23,7 @@ namespace StockManagementSystem
 
             _stockManager = new StockManager();
             stock = new Stock();
+            item = new Item();
 
             //DisplayStock();
         }
@@ -86,15 +88,18 @@ namespace StockManagementSystem
                     {
                         int availableQuantity = Convert.ToInt32(availableQuantityTextBox.Text);
                         int stockInQuantity = Convert.ToInt32(stockInQuantityTextBox.Text);
-                        stock.Quantity = availableQuantity + stockInQuantity;
+                        stock.Quantity = stockInQuantity;
+                        item.AvailableQuantity = availableQuantity + stockInQuantity;
                         stock.Date = DateTime.Now;
                         stock.Status = "Stock In";
 
                         try
                         {
                             messageLabel.Text = "";
+                            int isExecuted = 0;
 
-                            int isExecuted = _stockManager.StockIn(stock);
+                            isExecuted = _stockManager.StockIn(stock);
+                            isExecuted = _stockManager.InsertAvailableQuantity(item);
                             if (isExecuted > 0)
                             {
                                 messageLabel.Text = "Save Successful.";
@@ -120,14 +125,19 @@ namespace StockManagementSystem
                         messageLabel.Text = "Please enter quantity";
                         return;
                     }
-                    
-                    stock.Quantity = Convert.ToInt32(stockInQuantityTextBox.Text);
+
+                    int availableQuantity = Convert.ToInt32(availableQuantityTextBox.Text);
+                    int stockInQuantity = Convert.ToInt32(stockInQuantityTextBox.Text);
+                    stock.Quantity = stockInQuantity;
+                    item.AvailableQuantity = availableQuantity + stockInQuantity;
 
                     try
                     {
                         messageLabel.Text = "";
+                        int isExecuted = 0;
 
-                        int isExecuted = _stockManager.UpdateStock(stock);
+                        isExecuted = _stockManager.UpdateStock(stock);
+                        isExecuted = _stockManager.InsertAvailableQuantity(item);
                         if (isExecuted > 0)
                         {
                             messageLabel.Text = "Update Successful.";
@@ -236,7 +246,8 @@ namespace StockManagementSystem
             {
                 stock.ID = Convert.ToInt32(displayStockInDataGridView.CurrentRow.Cells[1].Value.ToString());
                 itemComboBox.Text = displayStockInDataGridView.CurrentRow.Cells[3].Value.ToString();
-                availableQuantityTextBox.Text = displayStockInDataGridView.CurrentRow.Cells[5].Value.ToString();
+                stock.ItemName = displayStockInDataGridView.CurrentRow.Cells[3].Value.ToString();
+                availableQuantityTextBox.Text = _stockManager.LoadQuantity(stock);
                 stockInQuantityTextBox.Text = displayStockInDataGridView.CurrentRow.Cells[5].Value.ToString();
 
                 SaveButton.Text = "Update";

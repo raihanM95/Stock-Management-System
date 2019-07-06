@@ -57,6 +57,11 @@ namespace StockManagementSystem.BLL
             return _stockRepository.UpdateStock(stock);
         }
 
+        public int InsertAvailableQuantity(Item item)
+        {
+            return _stockRepository.InsertAvailableQuantity(item);
+        }
+
         public DataTable DisplayStock(Stock stock)
         {
             return _stockRepository.DisplayStock(stock);
