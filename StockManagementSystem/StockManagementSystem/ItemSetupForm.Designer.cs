@@ -48,9 +48,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(159, 79);
+            this.label1.Location = new System.Drawing.Point(106, 51);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(73, 20);
+            this.label1.Size = new System.Drawing.Size(49, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Category";
             // 
@@ -59,9 +60,10 @@
             this.categoryComboBox.DataSource = this.categoryBindingSource;
             this.categoryComboBox.DisplayMember = "Name";
             this.categoryComboBox.FormattingEnabled = true;
-            this.categoryComboBox.Location = new System.Drawing.Point(257, 76);
+            this.categoryComboBox.Location = new System.Drawing.Point(171, 49);
+            this.categoryComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.categoryComboBox.Name = "categoryComboBox";
-            this.categoryComboBox.Size = new System.Drawing.Size(193, 28);
+            this.categoryComboBox.Size = new System.Drawing.Size(130, 21);
             this.categoryComboBox.TabIndex = 1;
             this.categoryComboBox.ValueMember = "ID";
             // 
@@ -72,9 +74,10 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(156, 123);
+            this.label2.Location = new System.Drawing.Point(104, 80);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(76, 20);
+            this.label2.Size = new System.Drawing.Size(51, 13);
             this.label2.TabIndex = 0;
             this.label2.Text = "Company";
             // 
@@ -83,9 +86,10 @@
             this.companyComboBox.DataSource = this.companyBindingSource;
             this.companyComboBox.DisplayMember = "Name";
             this.companyComboBox.FormattingEnabled = true;
-            this.companyComboBox.Location = new System.Drawing.Point(257, 120);
+            this.companyComboBox.Location = new System.Drawing.Point(171, 78);
+            this.companyComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.companyComboBox.Name = "companyComboBox";
-            this.companyComboBox.Size = new System.Drawing.Size(193, 28);
+            this.companyComboBox.Size = new System.Drawing.Size(130, 21);
             this.companyComboBox.TabIndex = 2;
             this.companyComboBox.ValueMember = "ID";
             // 
@@ -96,40 +100,45 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(145, 166);
+            this.label3.Location = new System.Drawing.Point(97, 108);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(87, 20);
+            this.label3.Size = new System.Drawing.Size(58, 13);
             this.label3.TabIndex = 0;
             this.label3.Text = "Item Name";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(124, 206);
+            this.label4.Location = new System.Drawing.Point(83, 134);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(108, 20);
+            this.label4.Size = new System.Drawing.Size(74, 13);
             this.label4.TabIndex = 0;
             this.label4.Text = "Reorder Level";
             // 
             // itemNameTextBox
             // 
-            this.itemNameTextBox.Location = new System.Drawing.Point(257, 163);
+            this.itemNameTextBox.Location = new System.Drawing.Point(171, 106);
+            this.itemNameTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.itemNameTextBox.Name = "itemNameTextBox";
-            this.itemNameTextBox.Size = new System.Drawing.Size(193, 26);
+            this.itemNameTextBox.Size = new System.Drawing.Size(130, 20);
             this.itemNameTextBox.TabIndex = 3;
             // 
             // reorderLevelTextBox
             // 
-            this.reorderLevelTextBox.Location = new System.Drawing.Point(257, 203);
+            this.reorderLevelTextBox.Location = new System.Drawing.Point(171, 132);
+            this.reorderLevelTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.reorderLevelTextBox.Name = "reorderLevelTextBox";
-            this.reorderLevelTextBox.Size = new System.Drawing.Size(193, 26);
+            this.reorderLevelTextBox.Size = new System.Drawing.Size(130, 20);
             this.reorderLevelTextBox.TabIndex = 4;
             // 
             // SaveButton
             // 
-            this.SaveButton.Location = new System.Drawing.Point(375, 250);
+            this.SaveButton.Location = new System.Drawing.Point(250, 162);
+            this.SaveButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.SaveButton.Name = "SaveButton";
-            this.SaveButton.Size = new System.Drawing.Size(75, 32);
+            this.SaveButton.Size = new System.Drawing.Size(50, 21);
             this.SaveButton.TabIndex = 5;
             this.SaveButton.Text = "Save";
             this.SaveButton.UseVisualStyleBackColor = true;
@@ -138,16 +147,18 @@
             // messageLabel
             // 
             this.messageLabel.AutoSize = true;
-            this.messageLabel.Location = new System.Drawing.Point(124, 256);
+            this.messageLabel.Location = new System.Drawing.Point(83, 166);
+            this.messageLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.messageLabel.Name = "messageLabel";
-            this.messageLabel.Size = new System.Drawing.Size(0, 20);
+            this.messageLabel.Size = new System.Drawing.Size(0, 13);
             this.messageLabel.TabIndex = 6;
             // 
             // ItemSetupForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(596, 354);
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.ClientSize = new System.Drawing.Size(397, 230);
             this.Controls.Add(this.messageLabel);
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.reorderLevelTextBox);
@@ -159,6 +170,7 @@
             this.Controls.Add(this.categoryComboBox);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MaximizeBox = false;
             this.Name = "ItemSetupForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

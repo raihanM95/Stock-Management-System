@@ -1,6 +1,6 @@
 ﻿namespace StockManagementSystem
 {
-    partial class SearchAndViewForm
+    partial class SearchForm
     {
         /// <summary>
         /// Required designer variable.

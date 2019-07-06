@@ -75,6 +75,11 @@ namespace StockManagementSystem.BLL
         public int StockOut(Stock stock)
         {
             return _stockRepository.StockOut(stock);
+	}
+
+        public DataTable ViewDataGridView(string fromDate, string toDate, string status)
+        {
+            return _stockRepository.ViewDataGridView(fromDate,toDate,status);
         }
     }
 }

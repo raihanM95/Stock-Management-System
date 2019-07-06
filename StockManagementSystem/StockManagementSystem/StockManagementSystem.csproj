@@ -92,11 +92,11 @@
     <Compile Include="Repository\ItemRepository.cs" />
     <Compile Include="Repository\StockRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />
-    <Compile Include="SearchAndViewForm.cs">
+    <Compile Include="SearchForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SearchAndViewForm.designer.cs">
-      <DependentUpon>SearchAndViewForm.cs</DependentUpon>
+    <Compile Include="SearchForm.designer.cs">
+      <DependentUpon>SearchForm.cs</DependentUpon>
     </Compile>
     <Compile Include="StockInForm.cs">
       <SubType>Form</SubType>
@@ -110,6 +110,12 @@
     </Compile>
     <Compile Include="StockOutForm.Designer.cs">
       <DependentUpon>StockOutForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewForm.designer.cs">
+      <DependentUpon>ViewForm.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="CategorySetupForm.resx">
       <DependentUpon>CategorySetupForm.cs</DependentUpon>
@@ -135,14 +141,17 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="SearchAndViewForm.resx">
-      <DependentUpon>SearchAndViewForm.cs</DependentUpon>
+    <EmbeddedResource Include="SearchForm.resx">
+      <DependentUpon>SearchForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StockInForm.resx">
       <DependentUpon>StockInForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StockOutForm.resx">
       <DependentUpon>StockOutForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewForm.resx">
+      <DependentUpon>ViewForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\DataSources\StockManagementSystem.BLL.StockManager.datasource" />
     <None Include="Properties\DataSources\StockManagementSystem.Models.Category.datasource" />
