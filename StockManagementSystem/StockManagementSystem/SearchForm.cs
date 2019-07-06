@@ -12,13 +12,13 @@ using System.Windows.Forms;
 
 namespace StockManagementSystem
 {
-    public partial class SearchAndViewForm : Form
+    public partial class SearchForm : Form
     {
         ItemManager _itemManager;
         Item item;
         DataTable dataTable;
 
-        public SearchAndViewForm()
+        public SearchForm()
         {
             InitializeComponent();
 

@@ -128,8 +128,9 @@ namespace StockManagementSystem
         // Call Search & View Items Summary form
         private void ViewItemsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SearchAndViewForm searchAndView = new SearchAndViewForm();
-            searchAndView.Show();
+            SearchForm search = new SearchForm();
+            search.Show();
+            
         }
 
         // Call Stock In form
@@ -149,7 +150,8 @@ namespace StockManagementSystem
         // Call View Between Two Dates Report form
         private void ViewReportToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            ViewForm viewForm = new ViewForm();
+            viewForm.Show();
         }
 
         // Timer add
