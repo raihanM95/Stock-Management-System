@@ -20,7 +20,7 @@ namespace StockManagementSystem.Repository
 
         public ItemRepository()
         {
-            connectionString = @"Server=DESKTOP-ON380RK\SQLEXPRESS; Database=StockManagementSystemDB; Integrated Security=True";
+            connectionString = @"SERVER = LAPTOP-BASHAROV\SQLEXPRESS; Database=StockManagementSystemDB; Integrated Security=True";
             sqlConnection = new SqlConnection(connectionString);
         }
 

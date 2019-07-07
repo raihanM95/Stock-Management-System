@@ -69,7 +69,7 @@
             // 
             // categoryBindingSource
             // 
-            this.categoryBindingSource.DataSource = typeof(StockManagementSystem.Models.Category);
+//            this.categoryBindingSource.DataSource = typeof(StockManagementSystem.Models.Category);
             // 
             // label2
             // 
@@ -95,7 +95,7 @@
             // 
             // companyBindingSource
             // 
-            this.companyBindingSource.DataSource = typeof(StockManagementSystem.Models.Company);
+//            this.companyBindingSource.DataSource = typeof(StockManagementSystem.Models.Company);
             // 
             // label3
             // 

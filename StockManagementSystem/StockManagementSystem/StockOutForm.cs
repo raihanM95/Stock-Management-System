@@ -185,8 +185,8 @@ namespace StockManagementSystem
             
             foreach (DataGridViewRow row in displayStockOutDataGridView.Rows)
             {
-                stockOut.ItemID = Convert.ToInt32(row.Cells["itemIDDataGridViewTextBoxColumn"].Value.ToString());
-                stockOut.Quantity = Convert.ToInt32(row.Cells["quantityDataGridViewTextBoxColumn"].Value.ToString());
+                stockOut.ItemID = Convert.ToInt32(row.Cells["dataGridViewTextBoxColumn2"].Value.ToString());
+                stockOut.Quantity = Convert.ToInt32(row.Cells["dataGridViewTextBoxColumn3"].Value.ToString());
                 stockOut.Date = DateTime.Now;
                 stockOut.Status = stock.Status;
 
