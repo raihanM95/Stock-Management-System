@@ -25,7 +25,7 @@ namespace StockManagementSystem.Repository
 
         public StockRepository()
         {
-            connectionString = @"Server=LAPTOP-BASHAROV\SQLEXPRESS; Database=StockManagementSystemDB; Integrated Security=True";
+            connectionString = @"Server=DESKTOP-ON380RK\SQLEXPRESS; Database=StockManagementSystemDB; Integrated Security=True";
             sqlConnection = new SqlConnection(connectionString);
         }
 
@@ -232,34 +232,14 @@ namespace StockManagementSystem.Repository
 
             sqlConnection.Open();
 
-	    sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+	        sqlDataAdapter = new SqlDataAdapter(sqlCommand);
             dataTable = new DataTable();
             sqlDataAdapter.Fill(dataTable);
 
             sqlConnection.Close();
 
-	    return dataTable;
-	}
-
-        public DataTable ViewDataGridView(string fromDate, string toDate, string status)
-        {
-            commandString = @"SELECT i.ItemName AS ItemName , com.Name AS Company, SUM(s.Quantity) AS Quantity 
-                              FROM Stocks As s, Companys AS com, Items AS i 
-                              WHERE s.ItemID=i.ID AND i.CompanyID=com.ID AND Status='"+ status +"' AND Date BETWEEN '"+fromDate+"' AND '"+toDate+ "'  GROUP BY i.ItemName,com.Name";
-
-
-            sqlCommand = new SqlCommand(commandString, sqlConnection);
-
-            sqlConnection.Open();
-
-            sqlDataAdapter = new SqlDataAdapter(sqlCommand);
-            dataTable = new DataTable();
-            sqlDataAdapter.Fill(dataTable);
-
-            sqlConnection.Close();
-
-            return dataTable;
-        }
+	        return dataTable;
+	    }
 
         public int StockOut(Stock stock)
         {
@@ -275,6 +255,25 @@ namespace StockManagementSystem.Repository
             sqlConnection.Close();
 
             return isExecuted;
+        }
+
+        public DataTable ViewReport(string fromDate, string toDate, string status)
+        {
+            commandString = @"SELECT i.ItemName AS ItemName, com.Name AS Company, SUM(s.Quantity) AS Quantity 
+                              FROM Stocks As s, Companys AS com, Items AS i 
+                              WHERE s.ItemID = i.ID AND i.CompanyID = com.ID AND s.Status = '" + status + "' AND s.Date BETWEEN '" + fromDate + "' AND '" + toDate + "' GROUP BY i.ItemName, com.Name";
+
+            sqlCommand = new SqlCommand(commandString, sqlConnection);
+
+            sqlConnection.Open();
+
+            sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+            dataTable = new DataTable();
+            sqlDataAdapter.Fill(dataTable);
+
+            sqlConnection.Close();
+
+            return dataTable;
         }
     }
 }

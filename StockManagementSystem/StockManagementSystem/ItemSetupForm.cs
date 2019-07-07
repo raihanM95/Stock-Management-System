@@ -15,7 +15,7 @@ namespace StockManagementSystem
     public partial class ItemSetupForm : Form
     {
         ItemManager _itemManager;
-        Item item;
+        private Item item;
 
         public ItemSetupForm()
         {

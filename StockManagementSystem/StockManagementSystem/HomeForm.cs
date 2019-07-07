@@ -150,8 +150,8 @@ namespace StockManagementSystem
         // Call View Between Two Dates Report form
         private void ViewReportToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ViewForm viewForm = new ViewForm();
-            viewForm.Show();
+            ViewForm view = new ViewForm();
+            view.Show();
         }
 
         // Timer add

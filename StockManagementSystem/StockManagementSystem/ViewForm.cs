@@ -15,11 +15,11 @@ namespace StockManagementSystem
     public partial class ViewForm : Form
     {
         StockManager _stockManager;
+
         public ViewForm()
         {
             InitializeComponent();
             _stockManager = new StockManager();
-
         }
 
         private void SearchButton_Click(object sender, EventArgs e)
@@ -27,27 +27,24 @@ namespace StockManagementSystem
             DataTable dataTable = new DataTable();
 
             string fromDate = fromDateTimePicker.Value.ToString("yyyy-MM-dd");
-           
             string toDate = toDateTimePicker.Value.ToString("yyyy-MM-dd");
 
-            //string status = "";
+            string status = "";
 
-            string status = "Stock In";
+            if (soldRadioButton.Checked == true)
+            {
+                status = "Sell";
+            }
+            else if (damagedRadioButton.Checked == true)
+            {
+                status = "Lost";
+            }
+            else
+            {
+                status = "Damaged";
+            }
 
-
-            //if (soldRadioButton.Checked == true)
-            //{
-            //    status = "Sold";
-            //}
-            //else if (damagedRadioButton.Checked == true)
-            //{
-            //    status = "Damaged";
-            //}
-            //else
-            //{
-            //    status = "Lost";
-            //}
-            dataTable = _stockManager.ViewDataGridView(fromDate, toDate, status);
+            dataTable = _stockManager.ViewReport(fromDate, toDate, status);
             //viewDataGridView.DataSource = dataTable;
 
             if (dataTable.Rows.Count > 0)
@@ -59,7 +56,6 @@ namespace StockManagementSystem
                 MessageBox.Show("No Data Found");
                 viewDataGridView.DataSource = null;
             }
-
         }
 
         private void viewDataGridView_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)

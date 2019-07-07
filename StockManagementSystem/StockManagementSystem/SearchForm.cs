@@ -15,7 +15,7 @@ namespace StockManagementSystem
     public partial class SearchForm : Form
     {
         ItemManager _itemManager;
-        Item item;
+        private Item item;
         DataTable dataTable;
 
         public SearchForm()

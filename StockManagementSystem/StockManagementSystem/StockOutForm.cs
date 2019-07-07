@@ -175,7 +175,7 @@ namespace StockManagementSystem
 
         private void DamageButton_Click(object sender, EventArgs e)
         {
-            stock.Status = "Lost";
+            stock.Status = "Damaged";
             StockOut();
         }
 
@@ -185,20 +185,22 @@ namespace StockManagementSystem
             
             foreach (DataGridViewRow row in displayStockOutDataGridView.Rows)
             {
-
-                
                 stockOut.ItemID = Convert.ToInt32(row.Cells["itemIDDataGridViewTextBoxColumn"].Value.ToString());
                 stockOut.Quantity = Convert.ToInt32(row.Cells["quantityDataGridViewTextBoxColumn"].Value.ToString());
                 stockOut.Date = DateTime.Now;
                 stockOut.Status = stock.Status;
+
                 item.ID = stockOut.ItemID;
                 dataTable = _stockManager.GetQuantity(item);
                 int quantity = Convert.ToInt32(dataTable.Rows[0]["AvailableQuantity"]);
                 quantity -= stockOut.Quantity;
                 item.AvailableQuantity = quantity;
                 _stockManager.InsertAvailableQuantity(item);
+
                 int isExecuted = 0;
+
                 isExecuted = _stockManager.StockOut(stockOut);
+
                 if (isExecuted > 0)
                 {
                     messageLabel.Text = "Save Successful.";
@@ -208,6 +210,7 @@ namespace StockManagementSystem
                     messageLabel.Text = "Save Failed!";
                 }
             }
+
             listStockOut = new List<Stock>();
             displayStockOutDataGridView.DataSource = null;
             displayStockOutDataGridView.DataSource = listStockOut;

@@ -61,18 +61,20 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.toDateTimePicker);
             this.panel1.Controls.Add(this.fromDateTimePicker);
-            this.panel1.Location = new System.Drawing.Point(62, 30);
+            this.panel1.Location = new System.Drawing.Point(87, 46);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(342, 139);
+            this.panel1.Size = new System.Drawing.Size(519, 214);
             this.panel1.TabIndex = 0;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(46, 80);
+            this.label2.Location = new System.Drawing.Point(143, 132);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(58, 19);
+            this.label2.Size = new System.Drawing.Size(88, 27);
             this.label2.TabIndex = 2;
             this.label2.Text = "To Date";
             // 
@@ -80,24 +82,31 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(29, 28);
+            this.label1.Location = new System.Drawing.Point(116, 51);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(75, 19);
+            this.label1.Size = new System.Drawing.Size(115, 27);
             this.label1.TabIndex = 1;
             this.label1.Text = "From Date";
             // 
             // toDateTimePicker
             // 
-            this.toDateTimePicker.Location = new System.Drawing.Point(118, 80);
+            this.toDateTimePicker.CustomFormat = "yyyy-MM-dd";
+            this.toDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.toDateTimePicker.Location = new System.Drawing.Point(239, 132);
+            this.toDateTimePicker.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.toDateTimePicker.Name = "toDateTimePicker";
-            this.toDateTimePicker.Size = new System.Drawing.Size(200, 20);
+            this.toDateTimePicker.Size = new System.Drawing.Size(143, 26);
             this.toDateTimePicker.TabIndex = 0;
             // 
             // fromDateTimePicker
             // 
-            this.fromDateTimePicker.Location = new System.Drawing.Point(118, 28);
+            this.fromDateTimePicker.CustomFormat = "yyyy-MM-dd";
+            this.fromDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.fromDateTimePicker.Location = new System.Drawing.Point(239, 52);
+            this.fromDateTimePicker.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.fromDateTimePicker.Name = "fromDateTimePicker";
-            this.fromDateTimePicker.Size = new System.Drawing.Size(200, 20);
+            this.fromDateTimePicker.Size = new System.Drawing.Size(143, 26);
             this.fromDateTimePicker.TabIndex = 0;
             // 
             // panel2
@@ -105,18 +114,20 @@
             this.panel2.Controls.Add(this.soldRadioButton);
             this.panel2.Controls.Add(this.lostRadioButton);
             this.panel2.Controls.Add(this.damagedRadioButton);
-            this.panel2.Location = new System.Drawing.Point(33, 175);
+            this.panel2.Location = new System.Drawing.Point(50, 269);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(392, 43);
+            this.panel2.Size = new System.Drawing.Size(588, 66);
             this.panel2.TabIndex = 0;
             // 
             // soldRadioButton
             // 
             this.soldRadioButton.AutoSize = true;
             this.soldRadioButton.Checked = true;
-            this.soldRadioButton.Location = new System.Drawing.Point(31, 13);
+            this.soldRadioButton.Location = new System.Drawing.Point(46, 20);
+            this.soldRadioButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.soldRadioButton.Name = "soldRadioButton";
-            this.soldRadioButton.Size = new System.Drawing.Size(46, 17);
+            this.soldRadioButton.Size = new System.Drawing.Size(66, 24);
             this.soldRadioButton.TabIndex = 1;
             this.soldRadioButton.TabStop = true;
             this.soldRadioButton.Text = "Sold";
@@ -125,9 +136,10 @@
             // lostRadioButton
             // 
             this.lostRadioButton.AutoSize = true;
-            this.lostRadioButton.Location = new System.Drawing.Point(281, 13);
+            this.lostRadioButton.Location = new System.Drawing.Point(422, 20);
+            this.lostRadioButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.lostRadioButton.Name = "lostRadioButton";
-            this.lostRadioButton.Size = new System.Drawing.Size(45, 17);
+            this.lostRadioButton.Size = new System.Drawing.Size(65, 24);
             this.lostRadioButton.TabIndex = 0;
             this.lostRadioButton.TabStop = true;
             this.lostRadioButton.Text = "Lost";
@@ -136,9 +148,10 @@
             // damagedRadioButton
             // 
             this.damagedRadioButton.AutoSize = true;
-            this.damagedRadioButton.Location = new System.Drawing.Point(150, 13);
+            this.damagedRadioButton.Location = new System.Drawing.Point(225, 20);
+            this.damagedRadioButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.damagedRadioButton.Name = "damagedRadioButton";
-            this.damagedRadioButton.Size = new System.Drawing.Size(71, 17);
+            this.damagedRadioButton.Size = new System.Drawing.Size(104, 24);
             this.damagedRadioButton.TabIndex = 0;
             this.damagedRadioButton.TabStop = true;
             this.damagedRadioButton.Text = "Damaged";
@@ -146,9 +159,10 @@
             // 
             // SearchButton
             // 
-            this.SearchButton.Location = new System.Drawing.Point(329, 230);
+            this.SearchButton.Location = new System.Drawing.Point(494, 354);
+            this.SearchButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.SearchButton.Name = "SearchButton";
-            this.SearchButton.Size = new System.Drawing.Size(75, 23);
+            this.SearchButton.Size = new System.Drawing.Size(112, 35);
             this.SearchButton.TabIndex = 1;
             this.SearchButton.Text = "Search";
             this.SearchButton.UseVisualStyleBackColor = true;
@@ -169,10 +183,11 @@
             this.dateDataGridViewTextBoxColumn,
             this.statusDataGridViewTextBoxColumn});
             this.viewDataGridView.DataSource = this.stockBindingSource;
-            this.viewDataGridView.Location = new System.Drawing.Point(33, 275);
+            this.viewDataGridView.Location = new System.Drawing.Point(50, 423);
+            this.viewDataGridView.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.viewDataGridView.Name = "viewDataGridView";
             this.viewDataGridView.RowHeadersVisible = false;
-            this.viewDataGridView.Size = new System.Drawing.Size(392, 181);
+            this.viewDataGridView.Size = new System.Drawing.Size(588, 278);
             this.viewDataGridView.TabIndex = 2;
             this.viewDataGridView.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.viewDataGridView_RowPostPaint);
             // 
@@ -236,15 +251,19 @@
             // 
             // ViewForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(462, 491);
+            this.ClientSize = new System.Drawing.Size(693, 755);
             this.Controls.Add(this.viewDataGridView);
             this.Controls.Add(this.SearchButton);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.MaximizeBox = false;
             this.Name = "ViewForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "View Between Two Dates Report";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

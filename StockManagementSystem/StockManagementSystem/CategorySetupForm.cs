@@ -15,7 +15,7 @@ namespace StockManagementSystem
     public partial class CategorySetupForm : Form
     {
         CategoryManager _categoryManager;
-        Category category;
+        private Category category;
 
         public CategorySetupForm()
         {

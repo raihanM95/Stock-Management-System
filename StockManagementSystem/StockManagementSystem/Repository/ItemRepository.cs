@@ -106,6 +106,7 @@ namespace StockManagementSystem.Repository
                                   LEFT OUTER JOIN Categorys As Cat ON I.CategoryID = Cat.ID)
                                   WHERE Com.Name = '" + item.Company + "'";
             }
+
             if (String.IsNullOrEmpty(item.Company))
             {
                 commandString = @"SELECT I.ItemName, I.ReorderLevel, I.AvailableQuantity, Com.Name As Company, Cat.Name As Category
@@ -114,6 +115,7 @@ namespace StockManagementSystem.Repository
                                   LEFT OUTER JOIN Categorys As Cat ON I.CategoryID = Cat.ID)
                                   WHERE Cat.Name = '" + item.Category + "'";
             }
+
             if (!String.IsNullOrEmpty(item.Category) && !String.IsNullOrEmpty(item.Company))
             {
                 commandString = @"SELECT I.ItemName, I.ReorderLevel, I.AvailableQuantity, Com.Name As Company, Cat.Name As Category

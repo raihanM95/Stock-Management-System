@@ -14,7 +14,7 @@ namespace StockManagementSystem
     public partial class CompanySetupForm : Form
     {
         CompanyManager _companyManager;
-        Company company ;
+        private Company company ;
 
         public CompanySetupForm()
         {
